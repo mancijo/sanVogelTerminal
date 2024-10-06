@@ -1,0 +1,20 @@
+Historias:
+
+Login
+	Nome
+	Senha
+	permissoes
+Hierarquia
+	Master
+	Administrador
+	Operativo
+produtos
+	id
+	nome
+	precos
+	Quantidade
+dados 
+	Pesquisar produtos
+	Inserir produtos
+	Criar usuarios
+	Alterar usuarios
