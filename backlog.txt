@@ -1,0 +1,6 @@
+1ª pesquisa e analise (06/09)
+2ª divisao do conteúdo do PIM com a equipe (13/09)
+3ª correções e Início sistema de login (20/09)
+4ª documentação ABNT PIM (27/09)
+5ª base de dados sistema  (04/10)
+6ª UML (11/10)
