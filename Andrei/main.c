@@ -2,24 +2,45 @@
 #include <string.h>
 #include <stdlib.h>
 
-int main()
-{
-    struct product {
+struct product {
         int id;
         char name[30];
         float price;
     };                              // Estrutura dos dados
-    typedef struct product Product; // Define Product
+typedef struct product Product; // Define Product
+
+FILE *arqIn; // Ponteiro do arquivo
+Product productIn;  // Cria a variavel productIn com a estrutura Product
+size_t fSize; // variavel com tipo proprio para tamanhos de arquivos
+Product *vProducts; // Ponteiro para a array de produtos
+
+//Fun√ß√£o para busca de itens no estoque
+Product* searchItem(int insertedType, char insertedSearch[30]) {
+    int sizeFile = (sizeof( vProducts ) / sizeof( vProducts[0]));
+    switch(insertedType) {
+        case 1:  
+            for(int i = 0; i < sizeFile; i++) {
+                if(vProducts[i].id == atoi(insertedSearch)) {
+                    return &vProducts[i];
+                }
+            }
+        break;
+        case 2: 
+            for(int i = 0; i < sizeFile; i++) {
+                if(strcmp(insertedSearch, vProducts[i].name)) {
+                    return &vProducts[i];
+                }
+            }
+        break;
+        default: return(NULL);
+    }
+}
 
 
-    FILE *arqIn, *arqOut; // Ponteiros do arquivo
-
-
-    Product productIn;  // Cria a variavel productIn com a estrutura Product
-    size_t fSize; // variavel com tipo prÛprio para tamanhos de arquivos
-
-    arqOut = fopen("productList.dat", "ab");
-    if(!arqOut){
+int main()
+{
+    arqIn = fopen("productList.dat", "ab");
+    if(!arqIn){
         printf("file error");
         return(0);
     }    // Abre o arquivo em forma de append e valida se abriu
@@ -37,13 +58,13 @@ int main()
         fflush(stdin);
 
         printf("preco: ");
-        scanf("%f", &productIn.price);  // Coleta o preÁo
+        scanf("%f", &productIn.price);  // Coleta o preÔøΩo
         fflush(stdin);
 
-        fwrite(&productIn, sizeof(productIn), 1, arqOut);   // Escreve no arquivo
+        fwrite(&productIn, sizeof(productIn), 1, arqIn);   // Escreve no arquivo
     } while(1);     // Loop se encerra apenas com o break
 
-    fclose(arqOut);  // Fecha o Arquivo
+    fclose(arqIn);  // Fecha o Arquivo
 
 
     arqIn = fopen("productList.dat", "rb");  // Abre o
@@ -55,16 +76,21 @@ int main()
     system("cls");      // Limpa a tela
 
     fseek(arqIn, 0l, SEEK_END); //  Define o ponteiro ao final do arquivo
-    fSize = ftell(arqIn); // FunÁ„o retorna a posiÁ„o do ponteiro, descobrindo o tamanho do arquivo
+    fSize = ftell(arqIn); // FunÔøΩÔøΩo retorna a posi√ß√£o do ponteiro, descobrindo o tamanho do arquivo
     printf("Tamanho do arquivo: %d (Bytes)\n", fSize);
     printf("Numero de registros: %d\n\n", (fSize/sizeof(Product))); // Divide o tamanho do arquivo pelo tamanho dos elementos, trazendo a quantidade de registros
     fseek(arqIn, 0l, SEEK_SET);
 
+    vProducts = (Product *) malloc(fSize);
+    if(!vProducts) {
+        printf("Falha ao alocar vetor!");
+        return(0);
+    }  // verificacao se vetor foi criado
 
-    while(fread(&productIn, sizeof(productIn), 1, arqIn))
-    {
-        printf("%i\t%8s\t%5.1f\n", productIn.id, productIn.name, productIn.price);
-    }
+    for(int i = 0; fread(&productIn, sizeof(productIn), 1, arqIn); i++) {
+        vProducts[i] = productIn;
+    } // Salva os elementos no arquivo em uma array
+    system("pause");
 
-
+    
 }
