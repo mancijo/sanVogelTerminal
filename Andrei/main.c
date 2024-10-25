@@ -24,8 +24,6 @@ int readFile() {
         return(0);
     }   // Abre o arquivo como leitura e verifica se abriu
 
-    system("cls");      // Limpa a tela
-
     fseek(arqIn, 0l, SEEK_END); //  Define o ponteiro ao final do arquivo
     fSize = ftell(arqIn); // Fun��o retorna a posição do ponteiro, descobrindo o tamanho do arquivo
     //printf("Tamanho do arquivo: %d (Bytes)\n", fSize);
@@ -43,36 +41,34 @@ int readFile() {
         vProducts[i] = productIn;
     } // Salva os elementos no arquivo em uma array
     fclose(arqIn);
-    return(0);
+    return(1);
 }
 
 //Função para busca de itens no estoque
-Product* searchItem (int insertedType, char insertedSearch[30]) { // A funcao recebe dois parametros e retorna um item com a struct Product
-    int sizeFile = (sizeof( vProducts ) / sizeof( vProducts[0]));
+Product searchItem (int insertedType, char insertedSearch[30]) { // A funcao recebe dois parametros e retorna um item com a struct Product
+    readFile();
     switch(insertedType) {
         case 1:  
-            for(int i = 0; i < sizeFile; i++) {
+            for(int i = 0; i < productQuantity; i++) {
                 if(vProducts[i].id == atoi(insertedSearch)) {
-                    return &vProducts[i];
+                    return vProducts[i];
                 }
             }
         break;
         case 2: 
-            for(int i = 0; i < sizeFile; i++) {
-                if(strcmp(insertedSearch, vProducts[i].name)) {
-                    return &vProducts[i];
+            for(int i = 0; i < productQuantity; i++) {
+                if(strcmp(insertedSearch, vProducts[i].name) == 0) {
+                    return vProducts[i];
                 }
             }
         break;
         default: 
-            return(NULL);
+            return(Product){0};
     }
-    return(NULL);
+    return(Product){0};
 }
 
-
-
-
+// Loop de inserção de itens
 int insertItem () {
     arqIn = fopen("productList.dat", "ab");
     if(!arqIn){
@@ -84,10 +80,7 @@ int insertItem () {
         system("cls");   // limpa a tela
 
         char choice;
-
-        printf("Inserir novo produto? [S/N]: ");
-        
-        
+        printf("Inserir novo produto? [S/N]: "); 
         choice = getchar(); // Leitura do caractere inserido    
         while (getchar() != '\n'); // elimina o enter do buffer
 
@@ -102,12 +95,14 @@ int insertItem () {
         // fflush(stdin);
 
         //Gerar ID
-        readFile();
-        productIn.id = productQuantity++;
+        fflush(stdin);
+        productIn = (Product){productQuantity++, "", 0.0f}; // Reseta a variavel e define o id
+
 
 
         printf("nome: ");
-        gets(productIn.name); // Coleta o nome
+        fgets(productIn.name, sizeof(productIn.name), stdin); // Coleta o nome
+        productIn.name[strcspn(productIn.name, "\n")] = 0; // Remove o \n ao final da string coletada
         fflush(stdin);
 
         printf("preco: ");
@@ -117,6 +112,8 @@ int insertItem () {
         fwrite(&productIn, sizeof(productIn), 1, arqIn);   // Escreve no arquivo
 
         system("cls");
+
+        
     } while(1);     // Loop se encerra apenas com o break
 
     fclose(arqIn);  // Fecha o Arquivo
@@ -124,14 +121,26 @@ int insertItem () {
     return(0);
 }
 
+//Mostrar todos os produtos
+void showAllProducts () {
+    readFile();
+    for(int i = 0; i < productQuantity; i++){
+        printf("%i\t\t%s\t\t%3.2f\n", vProducts[i].id, vProducts[i].name, vProducts[i].price);
+    }
+
+}
 
 int main()
 {
+    readFile();
+    Product produtoAchado;
+
     insertItem();
-    
 
+    produtoAchado = searchItem(2, "Banana");
+    produtoAchado = searchItem(2, "banana");
 
-    searchitem(2, "laranja");
+    printf("%i\t\t%s\t\t%3.2f\n", produtoAchado.id, produtoAchado.name, produtoAchado.price);
 
     
 }
