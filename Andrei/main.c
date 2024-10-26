@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
+//struct para os produtos
 struct product {
         int id;
         char name[30];
         float price;
+        bool active;
     };                              // Estrutura dos dados
 typedef struct product Product; // Define Product
 
@@ -20,7 +23,7 @@ int productQuantity; // Quantidade de produtos
 int readFile() {
     arqIn = fopen("productList.dat", "rb");  // Abre o
     if(!arqIn){
-        printf("file error");
+        printf("file error\n");
         return(0);
     }   // Abre o arquivo como leitura e verifica se abriu
 
@@ -44,18 +47,27 @@ int readFile() {
     return(1);
 }
 
+//Salvando o arquivo 
+void saveFile() {
+    arqIn = fopen("productList.dat", "wb");
+    for(int i = 0; i <= productQuantity; i++) {
+        fwrite(&vProducts[i], sizeof(vProducts[0]), 1, arqIn);
+    }
+    fclose(arqIn);
+} 
+
 //Função para busca de itens no estoque
 Product searchItem (int insertedType, char insertedSearch[30]) { // A funcao recebe dois parametros e retorna um item com a struct Product
     readFile();
     switch(insertedType) {
-        case 1:  
+        case 1:  //Busca por ID
             for(int i = 0; i < productQuantity; i++) {
                 if(vProducts[i].id == atoi(insertedSearch)) {
                     return vProducts[i];
                 }
             }
         break;
-        case 2: 
+        case 2:   //Busca pelo nome 
             for(int i = 0; i < productQuantity; i++) {
                 if(strcmp(insertedSearch, vProducts[i].name) == 0) {
                     return vProducts[i];
@@ -70,6 +82,7 @@ Product searchItem (int insertedType, char insertedSearch[30]) { // A funcao rec
 
 // Loop de inserção de itens
 int insertItem () {
+    readFile();
     arqIn = fopen("productList.dat", "ab");
     if(!arqIn){
         printf("file error");
@@ -96,7 +109,7 @@ int insertItem () {
 
         //Gerar ID
         fflush(stdin);
-        productIn = (Product){productQuantity++, "", 0.0f}; // Reseta a variavel e define o id
+        productIn = (Product){productQuantity++, "", 0.0f, true}; // Reseta a variavel e define o id
 
 
 
@@ -111,9 +124,7 @@ int insertItem () {
 
         fwrite(&productIn, sizeof(productIn), 1, arqIn);   // Escreve no arquivo
 
-        system("cls");
-
-        
+        system("cls");        
     } while(1);     // Loop se encerra apenas com o break
 
     fclose(arqIn);  // Fecha o Arquivo
@@ -125,22 +136,18 @@ int insertItem () {
 void showAllProducts () {
     readFile();
     for(int i = 0; i < productQuantity; i++){
-        printf("%i\t\t%s\t\t%3.2f\n", vProducts[i].id, vProducts[i].name, vProducts[i].price);
+        if(vProducts[i].active){
+            printf("%i\t\t%s\t\t%3.2f\n", vProducts[i].id, vProducts[i].name, vProducts[i].price);
+        }
     }
-
 }
 
 int main()
 {
-    readFile();
-    Product produtoAchado;
-
     insertItem();
 
-    produtoAchado = searchItem(2, "Banana");
-    produtoAchado = searchItem(2, "banana");
-
-    printf("%i\t\t%s\t\t%3.2f\n", produtoAchado.id, produtoAchado.name, produtoAchado.price);
+    showAllProducts();
 
     
+
 }
