@@ -8,8 +8,9 @@ struct product {
         int id;
         char name[30];
         float price;
+        int units;
         bool active;
-    };                              // Estrutura dos dados
+    };                          // Estrutura dos dados
 typedef struct product Product; // Define Product
 
 FILE *arqIn; // Ponteiro do arquivo
@@ -50,34 +51,34 @@ int readFile() {
 //Salvando o arquivo 
 void saveFile() {
     arqIn = fopen("productList.dat", "wb");
-    for(int i = 0; i <= productQuantity; i++) {
+    for(int i = 0; i <= productQuantity - 1; i++) {
         fwrite(&vProducts[i], sizeof(vProducts[0]), 1, arqIn);
     }
     fclose(arqIn);
 } 
 
 //Função para busca de itens no estoque
-Product searchItem (int insertedType, char insertedSearch[30]) { // A funcao recebe dois parametros e retorna um item com a struct Product
+Product* searchItem(int insertedType, char insertedSearch[30]) { // A funcao recebe dois parametros e retorna um item com a struct Product
     readFile();
     switch(insertedType) {
         case 1:  //Busca por ID
             for(int i = 0; i < productQuantity; i++) {
                 if(vProducts[i].id == atoi(insertedSearch)) {
-                    return vProducts[i];
+                    return &vProducts[i];
                 }
             }
         break;
         case 2:   //Busca pelo nome 
             for(int i = 0; i < productQuantity; i++) {
                 if(strcmp(insertedSearch, vProducts[i].name) == 0) {
-                    return vProducts[i];
+                    return &vProducts[i];
                 }
             }
         break;
         default: 
-            return(Product){0};
+            return NULL;
     }
-    return(Product){0};
+    return NULL;
 }
 
 // Loop de inserção de itens
@@ -102,16 +103,9 @@ int insertItem () {
             break;
         }
 
-        // printf("Digite 0 para sair\nid: ");  // O programa encerra quando digitar 0 no inicio
-        // scanf("%d", &productIn.id);     // Coleta o ID
-        // if(productIn.id == 0) break;    // Se 0 for inserido, encerra
-        // fflush(stdin);
-
         //Gerar ID
         fflush(stdin);
-        productIn = (Product){productQuantity++, "", 0.0f, true}; // Reseta a variavel e define o id
-
-
+        productIn = (Product){productQuantity++, "", 0.0f, 0, true}; // Reseta a variavel, define o id e inicia como ativa
 
         printf("nome: ");
         fgets(productIn.name, sizeof(productIn.name), stdin); // Coleta o nome
@@ -120,6 +114,10 @@ int insertItem () {
 
         printf("preco: ");
         scanf("%f", &productIn.price);  // Coleta o pre�o
+        fflush(stdin);
+
+        printf("Unidades: ");
+        scanf("%i", &productIn.units);  // Coleta o pre�o
         fflush(stdin);
 
         fwrite(&productIn, sizeof(productIn), 1, arqIn);   // Escreve no arquivo
@@ -137,17 +135,56 @@ void showAllProducts () {
     readFile();
     for(int i = 0; i < productQuantity; i++){
         if(vProducts[i].active){
-            printf("%i\t\t%s\t\t%3.2f\n", vProducts[i].id, vProducts[i].name, vProducts[i].price);
+            printf("%i\t\t%s\t\t\t%i\t\t%3.2f\n", vProducts[i].id, vProducts[i].name, vProducts[i].units, vProducts[i].price);
         }
     }
 }
 
-int main()
+// Editar produtos
+void editProduct(Product *productPtr, const char *element, char feed[30]) { //funcao para alterar os dados de produto na array
+    if(strcasecmp(element, "nome") == 0){
+        strcpy(productPtr->name, feed);
+    } else
+    if(strcasecmp(element, "preco") == 0){
+        productPtr->price = atof(feed);
+    } else
+    if(strcasecmp(element, "quantidade") == 0){
+        productPtr->units = atoi(feed);
+    } else {
+        printf("Erro ao editar"); system("pause");
+    }
+}
+
+
+int main() 
 {
+    showAllProducts();
+
+    system("pause");
+
     insertItem();
 
     showAllProducts();
 
-    
+    char nomeBuscado[20];
+    char novoNome[30];
 
+    printf("\nInsira o nome do produto: ");
+    fflush(stdin);
+    fgets(nomeBuscado, sizeof(nomeBuscado), stdin);
+
+    printf("\nInsira o novo nome do produto: ");
+    fflush(stdin);
+    fgets(novoNome, sizeof(novoNome), stdin);
+    novoNome[strcspn(novoNome, "\n")] = '\0';
+
+    Product *achado = searchItem(2, nomeBuscado);
+
+    editProduct(achado, "nome", novoNome);
+
+    printf("\n\n");
+
+    showAllProducts();
+
+    return 0;
 }
