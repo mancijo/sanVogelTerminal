@@ -184,149 +184,6 @@ int gerUser() {
     return 0;
 }
 
-// Função para consultar todo o estoque
-void CstEstoque() {
-    FILE *estoque;
-    estoque = fopen("estoque.txt", "r");
-
-    if (estoque == NULL) {
-        printf("Arquivo nao pode ser aberto\n");
-        exit(1);
-    }
-
-    char consutar[1000];
-
-    while (fgets(consutar, sizeof(consutar), estoque) != NULL) {
-        printf("%s", consutar);
-    }
-
-    fclose(estoque);
-}
-
-// Função para consultar um produto específico no estoque
-void cstEstoqueEsp() {
-    char buffer[1000];
-    char search[100];
-    int found = 0;
-
-    FILE *estoque;
-    estoque = fopen("estoque.txt", "r");
-
-    if (estoque == NULL) {
-        printf("Arquivo nao pode ser aberto.\n");
-        exit(1);
-    }
-
-    printf("Digite o nome ou ID do produto que deseja buscar: ");
-    fflush(stdin);
-    fgets(search, sizeof(search), stdin);
-    search[strcspn(search, "\n")] = 0; // Remove o newline
-
-    while (fgets(buffer, sizeof(buffer), estoque) != NULL) {
-        if (strstr(buffer, search) != NULL) {
-            printf("Produto encontrado:\n");
-            printf("%s", buffer);  // Exibe a linha com o nome ou ID encontrado
-
-            for (int i = 0; i < 3; i++) {
-                if (fgets(buffer, sizeof(buffer), estoque) != NULL) {
-                    printf("%s", buffer);
-                }
-            }
-            found = 1;
-            break;
-        }
-    }
-
-    if (!found) {
-        printf("Produto nao encontrado no estoque.\n");
-    }
-
-    fclose(estoque);
-}
-
-// Função para cadastrar produto no estoque
-void CadEstoque() {
-    FILE *estoque;
-    estoque = fopen("estoque.txt", "a");
-
-    if (estoque == NULL) {
-        printf("Arquivo nao pode ser aberto\n");
-        exit(1);
-    }
-
-    produto p;
-
-    // Gerador de número randômico para o id
-    p.IdP = rand() % 1000 + 1;
-
-    printf("Digite o nome do produto: ");
-    scanf("%s", p.nP);
-
-    printf("Digite a quantidade do produto: ");
-    scanf("%d", &p.qtdP);
-
-    printf("Digite o preco do produto: ");
-    scanf("%s", p.precoP);
-
-    subVirgpPonto(p.precoP);
-    float precoConver = atof(p.precoP);
-
-    fprintf(estoque, "\n-----------------\n");
-    fprintf(estoque, "ID: %d\n", p.IdP);
-    fprintf(estoque, "Nome: %s\n", p.nP);
-    fprintf(estoque, "Quantidade: %d\n", p.qtdP);
-    fprintf(estoque, "Preco: R$%s\n", p.precoP);
-    fprintf(estoque, "-----------------\n");
-
-    fclose(estoque);
-
-    printf("Dados inseridos e salvos com sucesso!\n\n");
-    printf("ID: %d\nNome: %s\nQuantidade: %d\nPreco: R$%s\n", p.IdP, p.nP, p.qtdP, p.precoP);
-}
-
-// Função para gerenciar estoque
-int gerEstq() {
-    int ge;
-    printf("\033[1;37;44m");//cor branca com fundo azul
-    printf("\n-------------MENU-------------\n");
-    printf("\033[0m");// Retorno cor padrão
-    printf("==============================\n");
-    printf("1. Cadastrar produto.\n");
-    printf("2. Excluir produto.\n");
-    printf("3. Editar produto.\n");
-    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
-    printf("4. Voltar.                    \n");
-    printf("\033[0m");// Retorno cor padrão
-    printf("==============================\n");
-    printf("Escolha uma opcao: ");
-    scanf("%d", &ge);
-
-    switch (ge) {
-    case 1:
-        CadEstoque();
-        system("pause");
-        system("cls");
-        break;
-    case 2:
-        printf("Funcionalidade de excluir produto ainda nao implementada.\n");
-        break;
-    case 3:
-        printf("Funcionalidade de editar produto ainda nao implementada.\n");
-        break;
-    case 4:
-        system("cls");
-        opcoesMa();
-        system("cls");
-        break;
-    default:
-        printf("Opcao invalida!\n");
-        gerEstq(); // Chama a função novamente em caso de opção inválida
-        break;
-    }
-
-    return 0;
-}
-
 // Função de login
 int login() {
     FILE *usuariosLog;
@@ -374,10 +231,8 @@ int login() {
                         case 1:
                             system("pause");
                             system("cls");
-                            gerEstq();
                             break;
                         case 2:
-                            CstEstoque();
                             system("pause");
                             system("cls");
                             break;
@@ -399,7 +254,6 @@ int login() {
                         scanf("%d", &opcaoOp);
                         switch (opcaoOp) {
                         case 1:
-                            CstEstoque();
                             system("pause");
                             system("cls");
                             break;
@@ -425,7 +279,6 @@ int login() {
                         switch (opcaoMa) {
                         case 1:
                             system("cls");
-                            gerEstq();
                         break;
                         case 2:
                             system("cls");
@@ -434,11 +287,9 @@ int login() {
                         break;
                         case 3:
                             system("cls");
-                            CstEstoque();
                             system("cls");
                             break;
                         case 4:
-                            cstEstoqueEsp();
                             system("pause");
                             system("cls");
                             break;
