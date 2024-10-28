@@ -3,6 +3,7 @@
 #include <string.h>
 #include <conio.h> // Inclua esta biblioteca para usar getch()
 #include <locale.h>
+#include "managEstq.h"
 
 // Definição da struct produto
 typedef struct {
@@ -425,12 +426,12 @@ int login() {
                         case 1:
                             system("cls");
                             gerEstq();
-                            break;
+                        break;
                         case 2:
                             system("cls");
                             gerUser();
                             system("cls");
-                            break;
+                        break;
                         case 3:
                             system("cls");
                             CstEstoque();
