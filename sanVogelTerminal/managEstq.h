@@ -22,7 +22,7 @@ int productQuantity; // Quantidade de produtos
 int readFile();         // Lê o arquivo e cria o vetor
 void saveFile();        // Salva o vetor no arquivo
 Product* searchItem(int insertedType, char *insertedSearch);    // Procura um item específico, busca por ID(1) ou nome(2)
-int insertItem ();      // Um loop para inserção de produtos
+int insertItem();      // Um loop para inserção de produtos
 void showAllProducts ();        // Mostra uma lista de produtos
 void editProduct(Product *productPtr, char *element, char *feed);       // Edita um produto específico
 
