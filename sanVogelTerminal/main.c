@@ -1,18 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <conio.h> // Inclua esta biblioteca para usar getch()
+#include <conio.h> 
 #include <locale.h>
 #include <stdbool.h>
+#include "managEstq.h"
 
 // Definição da struct produto
-typedef struct {
-    int IdP;
-    int qtdP;
-    char precoP[10];
-    char nP[100];
-    bool active; // inativar e ativar produto
-} produto;
 
 // Abertura do sistema
 void abertura() {
@@ -27,15 +21,11 @@ void abertura() {
 
 // Prototipação das funções
 int login();
-void opcaoUsr();
 void opcoesAdm();
 void opcoeOp();
 void opcoesMa();
 void CadUsr();
 int gerUser();
-void CstEstoque();
-void cstEstoqueEsp();
-void CadEstoque();
 int gerEstq();
 void InativarProduto();
 void AtivarProduto(); // Prototipagem correta
@@ -49,16 +39,6 @@ void subVirgpPonto(char *str) {
     }
 }
 
-// Função de opções para usuário Admin
-void opcoesAdm() {
-    printf("\n---------MENU----------\n");
-    printf("Escolha uma das opcoes abaixo: \n");
-    printf("==============================\n");
-    printf("1. Gerenciar Estoque.\n");
-    printf("2. Consultar Estoque.\n");
-    printf("3. Sair.\n");
-    printf("==============================\n");
-}
 
 // Função de opções para usuário Operador
 void opcoeOp() {
@@ -69,6 +49,17 @@ void opcoeOp() {
     printf("==============================\n");
     printf("1. Consultar Estoque.\n");
     printf("2. Vender produto.\n");
+    printf("3. Sair.\n");
+    printf("==============================\n");
+}
+
+// Função de opções para usuário Admin
+void opcoesAdm() {
+    printf("\n---------MENU----------\n");
+    printf("Escolha uma das opcoes abaixo: \n");
+    printf("==============================\n");
+    printf("1. Gerenciar Estoque.\n");
+    printf("2. Consultar Estoque.\n");
     printf("3. Sair.\n");
     printf("==============================\n");
 }
@@ -283,25 +274,6 @@ void AlterarUsr() {
     fclose(usuarios);
 }
 
-
-// Função para consultar todo o estoque
-void CstEstoque() {
-    FILE *estoque;
-    estoque = fopen("estoque.txt", "a+");
-
-    if (estoque == NULL) {
-        printf("Arquivo nao pode ser aberto\n");
-        exit(1);
-    }
-
-    char consultar[1000];
-
-    while (fgets(consultar, sizeof(consultar), estoque) != NULL) {
-        printf("%s", consultar);
-    }
-
-    fclose(estoque);
-}
 void AtivarProduto() {
     FILE *estoque;
     estoque = fopen("estoque.txt", "r+");
@@ -349,93 +321,9 @@ void AtivarProduto() {
 
     fclose(estoque);
 }
-// Função para consultar um produto específico no estoque
-void cstEstoqueEsp() {
-    char buffer[1000];
-    char search[100];
-    int found = 0;
-
-    FILE *estoque;
-    estoque = fopen("estoque.txt", "r");
-
-    if (estoque == NULL) {
-        printf("Arquivo nao pode ser aberto.\n");
-        exit(1);
-    }
-
-    printf("Digite o nome ou ID do produto que deseja buscar: ");
-    fflush(stdin);
-    fgets(search, sizeof(search), stdin);
-    search[strcspn(search, "\n")] = 0; // Remove o newline
-
-    while (fgets(buffer, sizeof(buffer), estoque) != NULL) {
-        if (strstr(buffer, search) != NULL) {
-            printf("Produto encontrado:\n");
-            printf("%s", buffer);  // Exibe a linha com o nome ou ID encontrado
-
-            for (int i = 0; i < 3; i++) {
-                if (fgets(buffer, sizeof(buffer), estoque) != NULL) {
-                    printf("%s", buffer);
-                }
-            }
-            found = 1;
-            break;
-        }
-    }
-
-    if (!found) {
-        printf("Produto nao encontrado no estoque.\n");
-    }
-
-    fclose(estoque);
-}
-
-// Função para cadastrar produto no estoque
-void CadEstoque() {
-    FILE *estoque;
-    estoque = fopen("estoque.txt", "a");
-
-    if (estoque == NULL) {
-        printf("Arquivo nao pode ser aberto\n");
-        exit(1);
-    }
-
-    produto p;
-
-    // Gerador de número randômico para o id
-    p.IdP = rand() % 1000 + 1;
-
-    printf("Digite o nome do produto: ");
-    scanf("%s", p.nP);
-
-    printf("Digite a quantidade do produto: ");
-    scanf("%d", &p.qtdP);
-
-    printf("Digite o preco do produto: ");
-    scanf("%s", p.precoP);
-
-    // Define como ativo
-    p.active = true;
-
-    subVirgpPonto(p.precoP);
-    float precoConver = atof(p.precoP);
-
-    fprintf(estoque, "\n-----------------\n");
-    fprintf(estoque, "ID: %d\n", p.IdP);
-    fprintf(estoque, "Nome: %s\n", p.nP);
-    fprintf(estoque, "Quantidade: %d\n", p.qtdP);
-    fprintf(estoque, "Preco: R$%s\n", p.precoP);
-    fprintf(estoque, "Ativo: true\n"); // Como o produto é cadastrado como ativo, sempre salva true
-    fprintf(estoque, "-----------------\n");
-
-    fclose(estoque);
-
-    printf("Dados inseridos e salvos com sucesso!\n\n");
-    printf("ID: %d\nNome: %s\nQuantidade: %d\nPreco: R$%s\n", p.IdP, p.nP, p.qtdP, p.precoP);
-}
 
 // Função para gerenciar estoque
-int gerEstq() {
+int gerEstq() {  
     int ge;
     printf("\033[1;37;44m"); // cor branca com fundo azul
     printf("\n-------------MENU-------------\n");
@@ -454,7 +342,7 @@ int gerEstq() {
 
     switch (ge) {
         case 1:
-            CadEstoque();
+            //CadEstoque();
             system("pause");
             system("cls");
             break;
@@ -482,53 +370,54 @@ case 4:
 
     return 0;
 }
-void InativarProduto() {
-    FILE *estoque;
-    estoque = fopen("estoque.txt", "r+");
 
-    if (estoque == NULL) {
-        printf("Arquivo não pode ser aberto\n");
-        exit(1);
-    }
+// void InativarProduto() {
+//     FILE *estoque;
+//     estoque = fopen("estoque.txt", "r+");
 
-    int id;
-    printf("Digite o ID do produto a ser inativado: ");
-    scanf("%d", &id);
+//     if (estoque == NULL) {
+//         printf("Arquivo não pode ser aberto\n");
+//         exit(1);
+//     }
 
-    char buffer[1000];
-    int found = 0;
+//     int id;
+//     printf("Digite o ID do produto a ser inativado: ");
+//     scanf("%d", &id);
 
-    char linhas[100][100];
-    int i = 0;
+//     char buffer[1000];
+//     int found = 0;
 
-    while (fgets(buffer, sizeof(buffer), estoque) != NULL) {
-        if (strstr(buffer, "ID:") != NULL && atoi(&buffer[4]) == id) {
-            found = 1;
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
-            fgets(buffer, sizeof(buffer), estoque); // Nome
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
-            fgets(buffer, sizeof(buffer), estoque); // Quantidade
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
-            fgets(buffer, sizeof(buffer), estoque); // Preço
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
-            snprintf(linhas[i++], sizeof(linhas[i]), "Ativo: false\n"); // Inativa o produto
-        } else {
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
-        }
-    }
+//     char linhas[100][100];
+//     int i = 0;
 
-    if (found) {
-        freopen("estoque.txt", "w", estoque);
-        for (int j = 0; j < i; j++) {
-            fprintf(estoque, "%s", linhas[j]);
-        }
-        printf("Produto inativado com sucesso!\n");
-    } else {
-        printf("Produto não encontrado.\n");
-    }
+//     while (fgets(buffer, sizeof(buffer), estoque) != NULL) {
+//         if (strstr(buffer, "ID:") != NULL && atoi(&buffer[4]) == id) {
+//             found = 1;
+//             snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
+//             fgets(buffer, sizeof(buffer), estoque); // Nome
+//             snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
+//             fgets(buffer, sizeof(buffer), estoque); // Quantidade
+//             snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
+//             fgets(buffer, sizeof(buffer), estoque); // Preço
+//             snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
+//             snprintf(linhas[i++], sizeof(linhas[i]), "Ativo: false\n"); // Inativa o produto
+//         } else {
+//             snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
+//         }
+//     }
 
-    fclose(estoque);
-}
+//     if (found) {
+//         freopen("estoque.txt", "w", estoque);
+//         for (int j = 0; j < i; j++) {
+//             fprintf(estoque, "%s", linhas[j]);
+//         }
+//         printf("Produto inativado com sucesso!\n");
+//     } else {
+//         printf("Produto não encontrado.\n");
+//     }
+
+//     fclose(estoque);
+// }
 
 // Função de login com verificação case-insensitive
 int login() {
@@ -592,7 +481,7 @@ int login() {
                                 gerEstq();
                             break;
                         case 2:
-                                CstEstoque();
+                            //CstEstoque();
                             system("pause");
                             system("cls");
                             break;
@@ -614,7 +503,7 @@ int login() {
                         scanf("%d", &opcaoOp);
                         switch (opcaoOp) {
                         case 1:
-                                CstEstoque();
+                            //CstEstoque();
                             system("pause");
                             system("cls");
                             break;
@@ -649,11 +538,11 @@ int login() {
                         break;
                         case 3:
                             system("cls");
-                                CstEstoque();
+                                //CstEstoque();
                                 system("pause");
                             break;
                         case 4:
-                                cstEstoqueEsp();
+                            //cstEstoqueEsp();
                             system("pause");
                             system("cls");
                             break;

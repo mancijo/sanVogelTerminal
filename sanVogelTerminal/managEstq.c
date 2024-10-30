@@ -115,7 +115,7 @@ void showAllProducts () {           //Mostrar todos os produtos
 }
 
 // Editar produtos
-void editProduct(Product *productPtr, const char *element, char *feed) { //funcao para alterar os dados de produto na array
+void editProduct(Product *productPtr, char *element, char *feed) { //funcao para alterar os dados de produto na array
     if(strcasecmp(element, "nome") == 0){
         strcpy(productPtr->name, feed);
     } else
