@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1730343239 source:c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<locale.h>
+	<stdbool.h>
+
