@@ -1,9 +1,57 @@
 # depslib dependency file v1.0
-1730343239 source:c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\main.c
+1730476596 source:c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\main.c
+	"commonLibs.h"
+
+1730473934 source:c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\managstrg.c
+	"managStrg.h"
+
+1730476622 c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\managstrg.h
+	"commonLibs.h"
+
+1730474980 c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\commomlibs.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<conio.h>
 	<locale.h>
 	<stdbool.h>
+	"managStrg.h"
+	"interfaces.h"
+
+1730477257 c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\interfaces.h
+	"commonLibs.h"
+
+1730477257 source:c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\interfaces.c
+	"interfaces.h"
+
+1730477330 c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\commonlibs.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<locale.h>
+	<stdbool.h>
+	"managStrg.h"
+	"interfaces.h"
+	"operador.h"
+	"administrativo.h"
+	"ti.h"
+
+1730476245 source:c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\administrativo.c
+	"administrativo.h"
+
+1730476611 c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\administrativo.h
+	"commonLibs.h"
+
+1730476017 source:c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\operador.c
+	"operador.h"
+
+1730476632 c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\operador.h
+	"commonLibs.h"
+
+1730476517 source:c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\ti.c
+	"ti.h"
+
+1730476666 c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\ti.h
+	"commonLibs.h"
 

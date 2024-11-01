@@ -1,6 +1,6 @@
-#include "managEstq.h"
+#include "managStrg.h"
 
-int readFile() {            //LÃª o arquivo e gera a array
+int readFile() {            //Lê o arquivo e gera a array
     // Abre o arquivo e verifica se abriu
     size_t fSize;
     arqIn = fopen("productList.dat", "rb");
@@ -13,7 +13,7 @@ int readFile() {            //LÃª o arquivo e gera a array
     fSize = ftell(arqIn);
     productQuantity = fSize / sizeof(Product);
     fseek(arqIn, 0l, SEEK_SET);
-    // Aloca memÃ³ria para o vetor
+    // Aloca memória para o vetor
     vProducts = malloc(fSize);
     if (!vProducts) {
         fclose(arqIn);
@@ -30,16 +30,16 @@ int readFile() {            //LÃª o arquivo e gera a array
     return 1;
 }
 
-//Salvando o arquivo 
+//Salvando o arquivo
 void saveFile() {           // Salva o vetor no arquivo binario
     arqIn = fopen("productList.dat", "wb");
     for(int i = 0; i <= productQuantity - 1; i++) {
         fwrite(&vProducts[i], sizeof(vProducts[0]), 1, arqIn);
     }
     fclose(arqIn);
-} 
+}
 
-//FunÃ§Ã£o para busca de itens no estoque
+//Função para busca de itens no estoque
 Product* searchItem(int insertedType, char *insertedSearch) { // A funcao recebe dois parametros e retorna um item com a struct Product
     readFile();
     switch(insertedType) {
@@ -50,30 +50,30 @@ Product* searchItem(int insertedType, char *insertedSearch) { // A funcao recebe
                 }
             }
         break;
-        case 2:   //Busca pelo nome 
+        case 2:   //Busca pelo nome
             for(int i = 0; i < productQuantity; i++) {
                 if(strcasecmp(insertedSearch, vProducts[i].name) == 0) {
                     return &vProducts[i];
                 }
             }
         break;
-        default: 
+        default:
             return NULL;
     }
     return NULL;
 }
 
-int insertItem () {                  // Loop de inserÃ§Ã£o de itens
-    readFile();                                 // Atualiza quantidade de produtos (necessÃ¡rio para definir ID) 
+int insertItem () {                  // Loop de inserção de itens
+    readFile();                                 // Atualiza quantidade de produtos (necessário para definir ID)
     arqIn = fopen("productList.dat", "ab");
     if(!arqIn){                                 // Abre o arquivo em forma de append e valida se abriu
         printf("file error");
         return(0);
-    }    
+    }
 
     char choice;
     do {
-        printf("Inserir novo produto? [S/N]: "); 
+        printf("Inserir novo produto? [S/N]: ");
         choice = getchar();
         while (getchar() != '\n'); // Limpa o buffer
 
@@ -81,13 +81,13 @@ int insertItem () {                  // Loop de inserÃ§Ã£o de itens
             break;
         }
 
-        Product newProduct = { productQuantity++, "", 0.0f, 0, true }; // Define os valores padrÃ£o
+        Product newProduct = { productQuantity++, "", 0.0f, 0, true }; // Define os valores padrão
 
         printf("Nome: ");
         fgets(newProduct.name, sizeof(newProduct.name), stdin);
         newProduct.name[strcspn(newProduct.name, "\n")] = 0; // Remove o '\n'
 
-        printf("PreÃ§o: ");
+        printf("Preço: ");
         scanf("%f", &newProduct.price);
         printf("Unidades: ");
         scanf("%i", &newProduct.units);
