@@ -7,5 +7,6 @@ void opcoesTi();
 void cadUsr();
 int gerUser();
 void alterarUsr();
+int storageTiPanel();
 
 #endif // TI_H_INCLUDED

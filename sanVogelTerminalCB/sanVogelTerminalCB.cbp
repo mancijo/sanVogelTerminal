@@ -31,9 +31,30 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="administrativo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="administrativo.h" />
+		<Unit filename="commonLibs.h" />
+		<Unit filename="interfaces.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="interfaces.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="managStrg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="managStrg.h" />
+		<Unit filename="operador.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="operador.h" />
+		<Unit filename="ti.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ti.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

@@ -67,11 +67,11 @@ int login() {
                         switch (opcaoAdm) {
                         case 1:
                             system("cls");
-                            strgPanel();
+                            storageTiPanel();
                             break;
                         case 2:
-                            system("pause");
                             system("cls");
+                            editProductPanelAdm();
                             break;
                         case 0:
                             printf("Saindo...\n");
@@ -82,7 +82,7 @@ int login() {
                             printf("Opcao invalida!\n");
                             break;
                         }
-                    } while (opcaoAdm != 3);
+                    } while (opcaoAdm != 0);
                 } else if (strcasecmp(roleArquivo, "Operador") == 0) {
                     int opcaoOp;
                     do {
@@ -117,11 +117,10 @@ int login() {
                         switch (opcaoMa) {
                         case 1:
                             system("cls");
-                            //    gerEstq();
+                            gerUser();
                         break;
                         case 2:
-                            system("cls");
-                            gerUser();
+                            storageOpPanel();
                             system("cls");
                         break;
                         case 3:

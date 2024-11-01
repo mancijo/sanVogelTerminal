@@ -11,3 +11,6 @@ void opcoeOp() {
     printf("0. Sair.\n");
     printf("==============================\n");
 }
+void storageOpPanel() {
+    printf("Não implementado!\n");
+}

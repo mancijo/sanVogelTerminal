@@ -7,8 +7,9 @@ void opcoesTi() {
     printf("==============================\n");
     printf("Escolha uma das opcoes abaixo: \n");
     printf("\n");
-    printf("1. Acessar estoque\n");
-    printf("2. Gerenciar usuario.\n");
+    printf("1. Gerenciar usuario\n");
+    printf("2. Acessar estoque\n");
+    printf("3. Vendern");
     printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
     printf("0. Sair.                      \n");
     printf("\033[0m"); // Retorno cor padr�o
@@ -81,46 +82,8 @@ void cadUsr() {
     fclose(usuarios);
 
     printf("\nUsuario cadastrado com sucesso!\n\n");
-}
-
-int gerUser() {
-    int gerUsuario;
-    printf("\033[1;37;44m"); // cor branca com fundo azul
-    printf("\n-------------MENU-------------\n");
-    printf("\033[0m"); // Retorno cor padr�o
-    printf("==============================\n");
-    printf("1. Cadastrar usuario.\n");
-    printf("2. Alterar usuario.\n");
-    printf("3. Desabilitar usuario.\n");
-    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
-    printf("4. Voltar.                    \n");
-    printf("\033[0m"); // Retorno cor padr�o
-    printf("==============================\n");
-    printf("Escolha uma opcao: ");
-    scanf("%d", &gerUsuario);
-
-    switch (gerUsuario) {
-    case 1:
-        cadUsr();
-        break;
-    case 2:
-            alterarUsr();
-            system("pause");
-        break;
-    case 3:
-        printf("Funcionalidade de desabilitar usuario ainda nao implementada.\n");
-        break;
-    case 4:
-        system("cls");
-        opcoesTi();
-        break;
-    default:
-        printf("Opcao invalida!\n");
-        gerUser(); // Chama a fun��o novamente em caso de op��o inv�lida
-        break;
-    }
-
-    return 0;
+    system("pause");
+    system("cls");
 }
 
 void alterarUsr() {
@@ -203,4 +166,83 @@ void alterarUsr() {
     }
 
     fclose(usuarios);
+}
+
+int gerUser() {
+    int gerUsuario;
+    printf("\033[1;37;44m"); // cor branca com fundo azul
+    printf("\n-------------MENU-------------\n");
+    printf("\033[0m"); // Retorno cor padr�o
+    printf("==============================\n");
+    printf("1. Cadastrar usuario.\n");
+    printf("2. Alterar usuario.\n");
+    printf("3. Desabilitar usuario.\n");
+    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
+    printf("0. Voltar.                    \n");
+    printf("\033[0m"); // Retorno cor padr�o
+    printf("==============================\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &gerUsuario);
+
+    switch (gerUsuario) {
+    case 1:
+        cadUsr();
+        break;
+    case 2:
+        alterarUsr();
+        system("pause");
+        break;
+    case 3:
+        printf("Funcionalidade de desabilitar usuario ainda nao implementada.\n");
+        break;
+    case 0:
+        system("cls");
+        opcoesTi();
+        break;
+    default:
+        printf("Opcao invalida!\n");
+        gerUser(); // Chama a fun��o novamente em caso de op��o inv�lida
+        break;
+    }
+
+    return 0;
+}
+
+int storageTiPanel() {
+    int ge;
+    printf("\033[1;37;44m"); // cor branca com fundo azul
+    printf("\n-------------MENU-------------\n");
+    printf("\033[0m"); // Retorno cor padr�o
+    printf("==============================\n");
+    printf("1. Cadastrar produtos.\n");
+    printf("2. Editar produto.\n");
+    printf("3. Inativar produto.\n");
+    printf("4. Ativar produto.\n");
+    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
+    printf("0. Voltar.                    \n");
+    printf("\033[0m"); // Retorno cor padr�o
+    printf("==============================\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &ge);
+
+    switch (ge) {
+        case 1:
+            insertItem();
+            break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+        case 4:
+
+            system("pause");
+            break;
+        case 0:
+            system("cls");
+            opcoesTi();
+            break;
+    }
+    return 0;
 }

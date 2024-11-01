@@ -4,7 +4,8 @@
 #include "commonLibs.h"
 
 void opcoesAdm();
-int strgPanel();
+int storagePanel();
+int editProductPanel();
 void ativarProduto();
 
 #endif // ADMINISTRATIVO_H_INCLUDED

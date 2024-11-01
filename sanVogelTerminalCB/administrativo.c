@@ -10,7 +10,7 @@ void opcoesAdm() {
     printf("==============================\n");
 }
 
-int strgPanel() {
+int storageAdmPanel() {
     int ge;
     printf("\033[1;37;44m"); // cor branca com fundo azul
     printf("\n-------------MENU-------------\n");
@@ -21,7 +21,7 @@ int strgPanel() {
     printf("3. Inativar produto.\n");
     printf("4. Ativar produto.\n");
     printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
-    printf("5. Voltar.                    \n");
+    printf("0. Voltar.                    \n");
     printf("\033[0m"); // Retorno cor padr�o
     printf("==============================\n");
     printf("Escolha uma opcao: ");
@@ -29,10 +29,11 @@ int strgPanel() {
 
     switch (ge) {
         case 1:
+            system("cls");
             insertItem();
             break;
         case 2:
-
+            //editProductPanel();
             break;
         case 3:
 
@@ -41,7 +42,7 @@ int strgPanel() {
 
             system("pause");
             break;
-        case 5:
+        case 0:
             system("cls");
             opcoesAdm();
             break;
@@ -95,4 +96,22 @@ void ativarProduto() {
     }
 
     fclose(estoque);
+}
+
+int editProductPanelAdm() {
+int ge;
+    printf("\033[1;37;44m"); // cor branca com fundo azul
+    printf("\n----------EDITANDO PRODUTOS----------\n");
+    printf("\033[0m"); // Retorno cor padr�o
+    printf("==============================\n");
+    printf("1. .\n");
+    printf("2. .\n");
+    printf("3. .\n");
+    printf("4. Ativar produto.\n");
+    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
+    printf("0. Voltar.                    \n");
+    printf("\033[0m"); // Retorno cor padr�o
+    printf("==============================\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &ge);
 }
