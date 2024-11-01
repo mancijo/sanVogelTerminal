@@ -5,7 +5,6 @@
 
 void abertura();
 int login();
-void opcoesMa();
-int strgPanel();
+
 
 #endif // INTERFACES_H_INCLUDED

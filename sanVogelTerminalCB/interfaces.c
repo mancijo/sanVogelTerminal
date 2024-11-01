@@ -111,7 +111,7 @@ int login() {
                 } else if (strcasecmp(roleArquivo, "Master") == 0) {
                     int opcaoMa;
                     do {
-                        opcoesMa();
+                        opcoesTi();
                         printf("Escolha uma opcao: ");
                         scanf("%d", &opcaoMa);
                         switch (opcaoMa) {
@@ -141,7 +141,7 @@ int login() {
                             break;
                         default:
                             printf("Opcao invalida!\n");
-                            opcoesMa();
+                            opcoesTi();
                             break;
                         }
                     } while (opcaoMa != 5);
@@ -167,64 +167,6 @@ int login() {
         }
     } while (!loginEncontrado);
 
-    return 0;
-}
-
-
-
-// Fun��o de op��es para usu�rio Master
-void opcoesMa() {
-    printf("\033[1;37;44m");//cor branca com fundo azul
-    printf("\n-------------MENU-------------\n");
-    printf("\033[0m");// Retorno cor padr�o
-    printf("==============================\n");
-    printf("Escolha uma das opcoes abaixo: \n");
-    printf("\n");
-    printf("1. Acessar estoque\n");
-    printf("2. Gerenciar usuario.\n");
-    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
-    printf("0. Sair.                      \n");
-    printf("\033[0m"); // Retorno cor padr�o
-    printf("==============================\n");
-}
-
-
-int strgPanel() {
-    int ge;
-    printf("\033[1;37;44m"); // cor branca com fundo azul
-    printf("\n-------------MENU-------------\n");
-    printf("\033[0m"); // Retorno cor padr�o
-    printf("==============================\n");
-    printf("1. Cadastrar produtos.\n");
-    printf("2. Editar produto.\n");
-    printf("3. Inativar produto.\n");
-    printf("4. Ativar produto.\n");
-    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
-    printf("5. Voltar.                    \n");
-    printf("\033[0m"); // Retorno cor padr�o
-    printf("==============================\n");
-    printf("Escolha uma opcao: ");
-    scanf("%d", &ge);
-
-    switch (ge) {
-        case 1:
-            insertItem();
-            break;
-        case 2:
-
-            break;
-        case 3:
-
-            break;
-        case 4:
-
-            system("pause");
-            break;
-        case 5:
-            system("cls");
-            opcoesAdm();
-            break;
-    }
     return 0;
 }
 
