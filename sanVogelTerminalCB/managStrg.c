@@ -3,10 +3,10 @@
 int readFile() {            //Lê o arquivo e gera a array
     // Abre o arquivo e verifica se abriu
     size_t fSize;
+    productQuantity = 0;
     arqIn = fopen("productList.dat", "rb");
     if (!arqIn) {
         perror("Erro ao abrir o arquivo");
-        return 0;
     }
     // Descobre o tamanho do arquivo e a quantidade de itens nele
     fseek(arqIn, 0l, SEEK_END);
@@ -71,6 +71,7 @@ int insertItem () {                  // Loop de inserção de itens
         return(0);
     }
 
+    fflush(stdin);
     char choice;
     do {
         printf("Inserir novo produto? [S/N]: ");
@@ -91,13 +92,15 @@ int insertItem () {                  // Loop de inserção de itens
         scanf("%f", &newProduct.price);
         printf("Unidades: ");
         scanf("%i", &newProduct.units);
-        getchar(); // Limpa o buffer
+        fflush(stdin);
 
         fwrite(&newProduct, sizeof(newProduct), 1, arqIn);
+
+        system("cls");
     } while (1);        // Loop se encerra apenas com o break
 
     fclose(arqIn);  // Fecha o Arquivo
-
+    system("cls");
     return(0);
 }
 
@@ -110,7 +113,6 @@ void showAllProducts () {           //Mostrar todos os produtos
     }
 }
 
-// Editar produtos
 void editProduct(Product *productPtr, char *element, char *feed) { //funcao para alterar os dados de produto na array
     if(strcasecmp(element, "nome") == 0){
         strcpy(productPtr->name, feed);
@@ -124,3 +126,5 @@ void editProduct(Product *productPtr, char *element, char *feed) { //funcao para
         printf("Erro ao editar"); system("pause");
     }
 }
+
+

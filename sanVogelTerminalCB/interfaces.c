@@ -10,6 +10,96 @@ void abertura() {
     system("cls");
 }
 
+void defUserPanel (char *roleArquivo) {
+if (strcasecmp(roleArquivo, "Admin") == 0) {
+        int opcaoAdm;
+        do {
+            opcoesAdm();
+            printf("Escolha uma opcao: ");
+            scanf("%d", &opcaoAdm);
+            switch (opcaoAdm) {
+            case 1:
+                system("cls");
+                storageTiPanel();
+                break;
+            case 2:
+                system("cls");
+                editProductPanel();
+                break;
+            case 0:
+                printf("Saindo...\n");
+                system("pause");
+                system("cls");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+                break;
+            }
+        } while (opcaoAdm != 0);
+    } else if (strcasecmp(roleArquivo, "Operador") == 0) {
+        int opcaoOp;
+        do {
+            opcoeOp();
+            printf("Escolha uma opcao: ");
+            scanf("%d", &opcaoOp);
+            switch (opcaoOp) {
+            case 1:
+                //CstEstoque();
+                system("pause");
+                system("cls");
+                break;
+            case 2:
+                printf("vender produto\n");
+                break;
+            case 0:
+                printf("Saindo...\n");
+                system("pause");
+                system("cls");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+                break;
+            }
+        } while (opcaoOp != 2);
+    } else if (strcasecmp(roleArquivo, "Master") == 0) {
+        int opcaoMa;
+        do {
+            opcoesTi();
+            printf("Escolha uma opcao: ");
+            scanf("%d", &opcaoMa);
+            switch (opcaoMa) {
+            case 1:
+                system("cls");
+                gerUser();
+            break;
+            case 2:
+                storageOpPanel();
+                system("cls");
+            break;
+            case 3:
+                system("cls");
+                    //CstEstoque();
+                    system("pause");
+                break;
+            case 4:
+                //cstEstoqueEsp();
+                system("pause");
+                system("cls");
+                break;
+            case 0:
+                printf("Saindo...\n");
+                system("pause");
+                system("cls");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+                opcoesTi();
+                break;
+            }
+        } while (opcaoMa != 5);
+    }
+}
+
 int login() {
     FILE *usuariosLog;
     char login_dig[30], senha_dig[30];
@@ -58,93 +148,8 @@ int login() {
                 system("pause");
                 system("cls");
 
-                if (strcasecmp(roleArquivo, "Admin") == 0) {
-                    int opcaoAdm;
-                    do {
-                        opcoesAdm();
-                        printf("Escolha uma opcao: ");
-                        scanf("%d", &opcaoAdm);
-                        switch (opcaoAdm) {
-                        case 1:
-                            system("cls");
-                            storageTiPanel();
-                            break;
-                        case 2:
-                            system("cls");
-                            editProductPanelAdm();
-                            break;
-                        case 0:
-                            printf("Saindo...\n");
-                            system("pause");
-                            system("cls");
-                            break;
-                        default:
-                            printf("Opcao invalida!\n");
-                            break;
-                        }
-                    } while (opcaoAdm != 0);
-                } else if (strcasecmp(roleArquivo, "Operador") == 0) {
-                    int opcaoOp;
-                    do {
-                        opcoeOp();
-                        printf("Escolha uma opcao: ");
-                        scanf("%d", &opcaoOp);
-                        switch (opcaoOp) {
-                        case 1:
-                            //CstEstoque();
-                            system("pause");
-                            system("cls");
-                            break;
-                        case 2:
-                            printf("vender produto\n");
-                            break;
-                        case 0:
-                            printf("Saindo...\n");
-                            system("pause");
-                            system("cls");
-                            break;
-                        default:
-                            printf("Opcao invalida!\n");
-                            break;
-                        }
-                    } while (opcaoOp != 2);
-                } else if (strcasecmp(roleArquivo, "Master") == 0) {
-                    int opcaoMa;
-                    do {
-                        opcoesTi();
-                        printf("Escolha uma opcao: ");
-                        scanf("%d", &opcaoMa);
-                        switch (opcaoMa) {
-                        case 1:
-                            system("cls");
-                            gerUser();
-                        break;
-                        case 2:
-                            storageOpPanel();
-                            system("cls");
-                        break;
-                        case 3:
-                            system("cls");
-                                //CstEstoque();
-                                system("pause");
-                            break;
-                        case 4:
-                            //cstEstoqueEsp();
-                            system("pause");
-                            system("cls");
-                            break;
-                        case 0:
-                            printf("Saindo...\n");
-                            system("pause");
-                            system("cls");
-                            break;
-                        default:
-                            printf("Opcao invalida!\n");
-                            opcoesTi();
-                            break;
-                        }
-                    } while (opcaoMa != 5);
-                }
+                defUserPanel(roleArquivo);
+
                 break; // Encerra o loop ap�s encontrar o usu�rio
             }
         }

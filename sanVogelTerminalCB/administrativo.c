@@ -1,4 +1,4 @@
-#include "administrativo.h"
+#include "commonLibs.h"
 
 void opcoesAdm() {
     printf("\n---------MENU----------\n");
@@ -8,6 +8,38 @@ void opcoesAdm() {
     printf("2. Iniciar vendas.\n");
     printf("0. Sair.\n");
     printf("==============================\n");
+}
+
+int editProductPanel() {
+    //declaração das variaveis
+    int type;
+    char search[30];
+    Product* produtoAlvo;
+
+    puts("Deseja usar ID ou o nome do produto?\n1: ID\n2: Nome");
+    scanf(" %i", &type);
+    if(type != 1 && type != 2){
+        puts("Valor invalido.");
+        system("pause");
+        system("cls");
+        return editProductPanel();
+    } //Verificacao do caractere
+
+    puts((type == 1) ? "Insira o ID do produto." : "Insira o nome do produto.");
+    fflush(stdin);
+    fgets(search, sizeof(search), stdin);
+    search[strcspn(search, "\n")] = 0; // Remove o '\n'
+
+    produtoAlvo = searchItem(type, search);
+    if (produtoAlvo == NULL) {
+        puts("Produto não encontrado.");
+        return 0;
+    }
+
+    puts("Produto encontrado:");
+    printf("%i\t\t%s\t\t\t%i\t\t%3.2f\n", produtoAlvo->id, produtoAlvo->name, produtoAlvo->units, produtoAlvo->price);
+
+    return(1);
 }
 
 int storageAdmPanel() {
@@ -33,7 +65,7 @@ int storageAdmPanel() {
             insertItem();
             break;
         case 2:
-            //editProductPanel();
+            editProductPanel();
             break;
         case 3:
 
@@ -98,20 +130,5 @@ void ativarProduto() {
     fclose(estoque);
 }
 
-int editProductPanelAdm() {
-int ge;
-    printf("\033[1;37;44m"); // cor branca com fundo azul
-    printf("\n----------EDITANDO PRODUTOS----------\n");
-    printf("\033[0m"); // Retorno cor padr�o
-    printf("==============================\n");
-    printf("1. .\n");
-    printf("2. .\n");
-    printf("3. .\n");
-    printf("4. Ativar produto.\n");
-    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
-    printf("0. Voltar.                    \n");
-    printf("\033[0m"); // Retorno cor padr�o
-    printf("==============================\n");
-    printf("Escolha uma opcao: ");
-    scanf("%d", &ge);
-}
+
+
