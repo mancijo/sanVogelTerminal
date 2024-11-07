@@ -8,5 +8,6 @@ void cadUsr();
 int gerUser();
 void alterarUsr();
 int storageTiPanel();
+void inativarUsuario();
 
 #endif // TI_H_INCLUDED

@@ -1,5 +1,24 @@
 #include "interfaces.h"
 
+void usuarioPadrao() {
+    FILE *usuarios = fopen("usuarios.txt", "r");
+
+    if (usuarios != NULL){
+        fclose(usuarios);
+        return;
+    }
+        usuarios = fopen("usuarios.txt", "w");
+        if (usuarios != NULL) {
+            fprintf(usuarios, "master 123 Master Ativo\n");
+
+            fclose(usuarios);
+        } else {
+            perror("Erro ao abrir o arquivo de usuarios.\n");
+            exit(1);
+    }
+}
+
+
 void abertura() {
     printf("==============================\n");
     printf("\033[1;32m"); // Inicia a cor verde claro

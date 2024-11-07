@@ -5,5 +5,6 @@
 
 void opcoeOp();
 void storageOpPanel();
+void venderProduto();
 
 #endif // OPERADOR_H_INCLUDED
