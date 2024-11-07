@@ -55,3 +55,49 @@
 1730487157 c:\users\meu pc\documents\estudos\pim\sanvogelterminalcb\ti.h
 	"commonLibs.h"
 
+1730755982 source:c:\users\mario\sanvogelterminal\sanvogelterminalcb\administrativo.c
+	"commonLibs.h"
+
+1730755982 c:\users\mario\sanvogelterminal\sanvogelterminalcb\commonlibs.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<locale.h>
+	<stdbool.h>
+	"managStrg.h"
+	"interfaces.h"
+	"operador.h"
+	"administrativo.h"
+	"ti.h"
+
+1730755982 c:\users\mario\sanvogelterminal\sanvogelterminalcb\managstrg.h
+	"commonLibs.h"
+
+1730755982 c:\users\mario\sanvogelterminal\sanvogelterminalcb\interfaces.h
+	"commonLibs.h"
+
+1730755982 c:\users\mario\sanvogelterminal\sanvogelterminalcb\operador.h
+	"commonLibs.h"
+
+1730755982 c:\users\mario\sanvogelterminal\sanvogelterminalcb\administrativo.h
+	"commonLibs.h"
+
+1730755982 c:\users\mario\sanvogelterminal\sanvogelterminalcb\ti.h
+	"commonLibs.h"
+
+1730755982 source:c:\users\mario\sanvogelterminal\sanvogelterminalcb\interfaces.c
+	"interfaces.h"
+
+1730851299 source:c:\users\mario\sanvogelterminal\sanvogelterminalcb\main.c
+	"commonLibs.h"
+
+1730755982 source:c:\users\mario\sanvogelterminal\sanvogelterminalcb\managstrg.c
+	"managStrg.h"
+
+1730755982 source:c:\users\mario\sanvogelterminal\sanvogelterminalcb\operador.c
+	"operador.h"
+
+1730755982 source:c:\users\mario\sanvogelterminal\sanvogelterminalcb\ti.c
+	"ti.h"
+

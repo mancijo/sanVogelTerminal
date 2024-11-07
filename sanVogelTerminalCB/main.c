@@ -60,9 +60,8 @@ void subVirgpPonto(char *str) {
 // }
 
 int main() {
-    setlocale(LC_ALL,"Portuguese");
-    showAllProducts();
-    insertItem();
-    editProductPanel();
+    usuarioPadrao();
+    abertura();
+    login();
     return 0;
 }

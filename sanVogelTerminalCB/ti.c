@@ -86,47 +86,48 @@ void cadUsr() {
     system("cls");
 }
 
-void alterarUsr() {
+void AlterarUsr() {
     FILE *usuarios;
-    char nomeAntigo[30], novoNome[30], novaSenha[30], novoRole[10];
-    char tempName[30], tempPass[30], tempRole[10];
+    char nomeAntigo[30], novoNome[30], novaSenha[30], novoRole[10], novoStatus[10];
+    char tempName[30], tempPass[30], tempRole[10], tempStatus[10];
     int found = 0;
 
-    usuarios = fopen("usuarios.txt", "r+"); // Abre o arquivo para leitura e escrita
+    usuarios = fopen("usuarios.txt", "r+");
     if (usuarios == NULL) {
-        printf("Arquivo n�o pode ser aberto\n");
+        printf("Arquivo nao pode ser aberto\n");
         exit(1);
     }
 
-    printf("Digite o nome do usu�rio que deseja alterar: ");
+    printf("Digite o nome do usuario que deseja alterar: ");
     scanf("%s", nomeAntigo);
 
-    // Ler todo o conte�do para uma lista tempor�ria
-    // Aqui, estamos usando um array para armazenar os dados.
-    // Considere usar uma estrutura de dados din�mica (como linked list) se necess�rio.
-    char linhas[100][100]; // Ajuste o tamanho conforme necess�rio
+    char linhas[100][100]; // Ajuste o tamanho conforme necessário
     int i = 0;
 
-    while (fscanf(usuarios, "%s %s %s", tempName, tempPass, tempRole) != EOF) {
-        snprintf(linhas[i], sizeof(linhas[i]), "%s %s %s", tempName, tempPass, tempRole);
+    // Lê todos os usuários no arquivo e os armazena em 'linhas'
+    while (fscanf(usuarios, "%s %s %s %s", tempName, tempPass, tempRole, tempStatus) != EOF) {
+        snprintf(linhas[i], sizeof(linhas[i]), "%s %s %s %s", tempName, tempPass, tempRole, tempStatus);
         i++;
     }
 
-    // Agora que temos todos os dados, podemos procurar o usu�rio
+    // Procura pelo usuário a ser alterado
     for (int j = 0; j < i; j++) {
-        if (strstr(linhas[j], nomeAntigo) != NULL) { // Verifica se o usu�rio est� na linha
+        if (strstr(linhas[j], nomeAntigo) != NULL) { // Verifica se o usuário está na linha
             found = 1;
-            printf("Usu�rio encontrado! Deseja alterar o nome? (1 - Sim / 0 - N�o): ");
+
+            // Alteração do nome
+            printf("Usuario encontrado! \nDeseja alterar o nome? (1 - Sim / 0 - Nao): ");
             int alterarNome;
             scanf("%d", &alterarNome);
             if (alterarNome) {
                 printf("Digite o novo nome: ");
                 scanf("%s", novoNome);
-                sscanf(linhas[j], "%s %s %s", tempName, tempPass, tempRole);
-                snprintf(linhas[j], sizeof(linhas[j]), "%s %s %s", novoNome, tempPass, tempRole);
+                sscanf(linhas[j], "%s %s %s %s", tempName, tempPass, tempRole, tempStatus);
+                snprintf(linhas[j], sizeof(linhas[j]), "%s %s %s %s", novoNome, tempPass, tempRole, tempStatus);
             }
 
-            printf("Deseja alterar a senha? (1 - Sim / 0 - N�o): ");
+            // Alteração da senha
+            printf("Deseja alterar a senha? (1 - Sim / 0 - Nao): ");
             int alterarSenha;
             scanf("%d", &alterarSenha);
             if (alterarSenha) {
@@ -138,35 +139,48 @@ void alterarUsr() {
                     printf("*");
                 }
                 novaSenha[k] = '\0'; // Termina a string
-                sscanf(linhas[j], "%s %s %s", tempName, tempPass, tempRole);
-                snprintf(linhas[j], sizeof(linhas[j]), "%s %s %s", tempName, novaSenha, tempRole);
+                sscanf(linhas[j], "%s %s %s %s", tempName, tempPass, tempRole, tempStatus);
+                snprintf(linhas[j], sizeof(linhas[j]), "%s %s %s %s", tempName, novaSenha, tempRole, tempStatus);
             }
 
-            printf("Deseja alterar o n�vel de hierarquia? (1 - Sim / 0 - N�o): ");
+            // Alteração do nível de hierarquia
+            printf("Deseja alterar o nivel de hierarquia? (1 - Sim / 0 - Nao): ");
             int alterarRole;
             scanf("%d", &alterarRole);
             if (alterarRole) {
-                printf("Digite o novo n�vel de hierarquia (Operador, Admin, Master): ");
+                printf("Digite o novo nivel de hierarquia (Operador, Admin, Master): ");
                 scanf("%s", novoRole);
-                sscanf(linhas[j], "%s %s %s", tempName, tempPass, tempRole);
-                snprintf(linhas[j], sizeof(linhas[j]), "%s %s %s", tempName, tempPass, novoRole);
+                sscanf(linhas[j], "%s %s %s %s", tempName, tempPass, tempRole, tempStatus);
+                snprintf(linhas[j], sizeof(linhas[j]), "%s %s %s %s", tempName, tempPass, novoRole, tempStatus);
+            }
+
+            // Alteração do status
+            printf("Deseja alterar o status do usuario? (1 - Sim / 0 - Nao): ");
+            int alterarStatus;
+            scanf("%d", &alterarStatus);
+            if (alterarStatus) {
+                printf("Digite o novo status do usuario (Ativo ou Inativo): ");
+                scanf("%s", novoStatus);
+                sscanf(linhas[j], "%s %s %s %s", tempName, tempPass, tempRole, tempStatus);
+                snprintf(linhas[j], sizeof(linhas[j]), "%s %s %s %s", tempName, tempPass, tempRole, novoStatus);
             }
         }
     }
 
     if (found) {
-        // Agora reescrevemos o arquivo
-        freopen("usuarios.txt", "w", usuarios); // Reabre o arquivo para escrita
+        // Reabre o arquivo para sobrescrever os dados atualizados
+        freopen("usuarios.txt", "w", usuarios);
         for (int j = 0; j < i; j++) {
             fprintf(usuarios, "%s\n", linhas[j]);
         }
-        printf("Usu�rio alterado com sucesso!\n");
+        printf("Usuario alterado com sucesso!\n");
     } else {
-        printf("Usu�rio n�o encontrado.\n");
+        printf("Usuario nao encontrado.\n");
     }
 
     fclose(usuarios);
 }
+
 
 int gerUser() {
     int gerUsuario;
@@ -209,6 +223,8 @@ int gerUser() {
 }
 
 int storageTiPanel() {
+
+
     int ge;
     printf("\033[1;37;44m"); // cor branca com fundo azul
     printf("\n-------------MENU-------------\n");
@@ -246,3 +262,59 @@ int storageTiPanel() {
     }
     return 0;
 }
+
+void inativarUsuario() {
+    Usuario usuarios[MAX_USUARIOS];
+    int totalUsuarios = 0;
+    char loginParaInativar[30];
+    int usuarioEncontrado = 0;
+
+    // Abrir o arquivo de usuários para leitura
+    FILE *file = fopen("usuarios.txt", "r+");
+    if (file == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return;
+    }
+
+    // Carregar todos os usuários do arquivo para a memória
+    while (fscanf(file, "%s %s %s %s", usuarios[totalUsuarios].login, usuarios[totalUsuarios].senha,
+                  usuarios[totalUsuarios].role, usuarios[totalUsuarios].status) == 4) {
+        totalUsuarios++;
+        if (totalUsuarios >= MAX_USUARIOS) {
+            printf("Número máximo de usuários atingido.\n");
+            break; // Evita overflow
+        }
+    }
+
+    // Solicitar o login do usuário a ser inativado
+    printf("Digite o login do usuario que deseja inativar: ");
+    scanf("%s", loginParaInativar);
+
+    // Buscar e inativar o usuário na memória
+    for (int i = 0; i < totalUsuarios; i++) {
+        // Comparar o status de forma case-insensitive
+        if (strcasecmp(usuarios[i].login, loginParaInativar) == 0 &&
+            strcasecmp(usuarios[i].status, "Ativo") == 0) {
+            strcpy(usuarios[i].status, "inativo");  // Marca o usuário como inativo
+            printf("Usuario '%s' foi inativado com sucesso.\n", usuarios[i].login);
+            system("pause");
+            usuarioEncontrado = 1;
+            break;
+        }
+    }
+
+    if (!usuarioEncontrado) {
+        printf("Usuario '%s' nao encontrado ou ja esta inativo.\n", loginParaInativar);
+    }
+
+    // Voltar ao início do arquivo para sobrescrever os dados
+    rewind(file);
+
+    // Escrever todos os usuários atualizados de volta ao arquivo
+    for (int i = 0; i < totalUsuarios; i++) {
+        fprintf(file, "%s %s %s %s\n", usuarios[i].login, usuarios[i].senha, usuarios[i].role, usuarios[i].status);
+    }
+
+    fclose(file);
+}
+
