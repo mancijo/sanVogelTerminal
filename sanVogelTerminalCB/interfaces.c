@@ -21,12 +21,16 @@ void usuarioPadrao() {
 
 void abertura() {
     printf("==============================\n");
-    printf("\033[1;32m"); // Inicia a cor verde claro
+    printf("\033[1;31m"); // Inicia a cor verde claro
     printf("     BEM-VINDO AO SISTEMA     \n");
-    printf("\033[0m");// Retorno cor padrão
+    printf("\033"); // Retorna à cor padrão
     printf("==============================\n");
-    system("pause");
+
+    printf("Pressione Enter para continuar...");
+    getchar();  // Pausa até o usuário pressionar Enter
+
     system("cls");
+
 }
 
 void defUserPanel (char *roleArquivo) {
@@ -83,7 +87,7 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
     } else if (strcasecmp(roleArquivo, "Master") == 0) {
         int opcaoMa;
         do {
-            opcoesTi();
+            opcoesMa();
             printf("Escolha uma opcao: ");
             scanf("%d", &opcaoMa);
             switch (opcaoMa) {
@@ -109,10 +113,11 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 printf("Saindo...\n");
                 system("pause");
                 system("cls");
+                exit(0);
                 break;
             default:
                 printf("Opcao invalida!\n");
-                opcoesTi();
+                opcoesMa();
                 break;
             }
         } while (opcaoMa != 5);

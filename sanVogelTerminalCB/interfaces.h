@@ -3,6 +3,7 @@
 
 #include "commonLibs.h"
 
+void usuarioPadrao();
 void abertura();
 int login();
 

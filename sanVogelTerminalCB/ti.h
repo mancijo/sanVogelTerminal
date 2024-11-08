@@ -3,10 +3,19 @@
 
 #include "commonLibs.h"
 
-void opcoesTi();
+#define MAX_USUARIOS 100
+
+typedef struct {
+    char login[30];
+    char senha[30];
+    char role[10];
+    char status[10];
+} Usuario;
+
+void opcoesMa();
 void cadUsr();
-int gerUser();
 void alterarUsr();
+int gerUser();
 int storageTiPanel();
 void inativarUsuario();
 

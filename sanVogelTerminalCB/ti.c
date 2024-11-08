@@ -1,6 +1,6 @@
 #include "ti.h"
 
-void opcoesTi() {
+void opcoesMa() {
     printf("\033[1;37;44m");//cor branca com fundo azul
     printf("\n-------------MENU-------------\n");
     printf("\033[0m");// Retorno cor padr�o
@@ -9,7 +9,7 @@ void opcoesTi() {
     printf("\n");
     printf("1. Gerenciar usuario\n");
     printf("2. Acessar estoque\n");
-    printf("3. Vendern");
+    printf("3. Vender\n");
     printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
     printf("0. Sair.                      \n");
     printf("\033[0m"); // Retorno cor padr�o
@@ -203,15 +203,15 @@ int gerUser() {
         cadUsr();
         break;
     case 2:
-        alterarUsr();
+//        alterarUsr();
         system("pause");
         break;
     case 3:
-        printf("Funcionalidade de desabilitar usuario ainda nao implementada.\n");
+        inativarUsuario();
         break;
     case 0:
         system("cls");
-        opcoesTi();
+        opcoesMa();
         break;
     default:
         printf("Opcao invalida!\n");
@@ -257,7 +257,7 @@ int storageTiPanel() {
             break;
         case 0:
             system("cls");
-            opcoesTi();
+            opcoesMa();
             break;
     }
     return 0;
