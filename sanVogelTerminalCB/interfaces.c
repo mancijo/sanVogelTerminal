@@ -21,9 +21,7 @@ void usuarioPadrao() {
 
 void abertura() {
     printf("==============================\n");
-    printf("\033[1;31m"); // Inicia a cor verde claro
     printf("     BEM-VINDO AO SISTEMA     \n");
-    printf("\033"); // Retorna à cor padrão
     printf("==============================\n");
 
     printf("Pressione Enter para continuar...");
@@ -43,11 +41,11 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
             switch (opcaoAdm) {
             case 1:
                 system("cls");
-                storageTiPanel();
+                storageAdmPanel();
                 break;
             case 2:
                 system("cls");
-                editProductPanel();
+
                 break;
             case 0:
                 printf("Saindo...\n");
@@ -96,7 +94,7 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 gerUser();
             break;
             case 2:
-                storageOpPanel();
+                //storageOpPanel();
                 system("cls");
             break;
             case 3:
@@ -127,7 +125,7 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
 int login() {
     FILE *usuariosLog;
     char login_dig[30], senha_dig[30];
-    char loginArquivo[30], senhaArquivo[30], roleArquivo[10];
+    char loginArquivo[30], senhaArquivo[30], roleArquivo[10], statusArquivo[10];
     int loginEncontrado = 0;
 
     // Estrutura de repeti��o caso o usuario erre a senha
@@ -164,8 +162,15 @@ int login() {
             }
         }
 
-        while (fscanf(usuariosLog, "%s %s %s", loginArquivo, senhaArquivo, roleArquivo) != EOF) {
+        while (fscanf(usuariosLog, "%s %s %s %s", loginArquivo, senhaArquivo, roleArquivo, statusArquivo) != EOF) {
             // Compara��o case-insensitive para login e senha
+            if (strcasecmp(statusArquivo, "Inativo") == 0) {
+                printf("Usuario Inativo.\n");
+                system("pause");
+                system("cls");
+                login();
+                }
+
             if (strcasecmp(loginArquivo, login_dig) == 0 && strcmp(senha_dig, senhaArquivo) == 0) {
                 loginEncontrado = 1;
                 printf("\nLogin bem-sucedido! Bem-vindo %s.\n", loginArquivo);

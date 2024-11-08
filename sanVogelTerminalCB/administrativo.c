@@ -1,5 +1,6 @@
 #include "commonLibs.h"
 
+
 void opcoesAdm() {
     printf("\n---------MENU----------\n");
     printf("Escolha uma das opcoes abaixo: \n");
@@ -52,6 +53,7 @@ int storageAdmPanel() {
     printf("2. Editar produto.\n");
     printf("3. Inativar produto.\n");
     printf("4. Ativar produto.\n");
+    printf("5. Historico de Vendas.\n");
     printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
     printf("0. Voltar.                    \n");
     printf("\033[0m"); // Retorno cor padr�o
@@ -71,8 +73,11 @@ int storageAdmPanel() {
 
             break;
         case 4:
-
+            ativarProduto();
             system("pause");
+            break;
+        case 5:
+            exibirHistoricoVendas();
             break;
         case 0:
             system("cls");
@@ -124,11 +129,12 @@ void ativarProduto() {
         }
         printf("Produto ativado com sucesso!\n");
     } else {
-        printf("Produto n�o encontrado.\n");
+        printf("Produto nao encontrado.\n");
     }
 
     fclose(estoque);
 }
+
 
 
 

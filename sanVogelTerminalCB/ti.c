@@ -12,7 +12,7 @@ void opcoesMa() {
     printf("3. Vender\n");
     printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
     printf("0. Sair.                      \n");
-    printf("\033[0m"); // Retorno cor padr�o
+    printf("\033[0m"); // Retorno cor padrao
     printf("==============================\n");
 }
 
@@ -21,6 +21,7 @@ void cadUsr() {
     char lUsr[30];
     char sUsr[30];
     char roleUsr[10];
+    char statusUsr[10] = "Ativo";
 
     // Verifica se o arquivo de usu�rios pode ser aberto
     usuarios = fopen("usuarios.txt", "a+");
@@ -33,10 +34,12 @@ void cadUsr() {
     scanf("%s", lUsr);
 
     //Verificar se o usu�rio j� existe no arquivo
-    char tempName[30], tempPass[30], tempRole[10];
-    while (fscanf(usuarios, "%s %s %s", tempName, tempPass, tempRole) != EOF) {
+    char tempName[30], tempPass[30], tempRole[10], tempStatus[10];
+    while (fscanf(usuarios, "%s %s %s %s", tempName, tempPass, tempRole, tempStatus) != EOF) {
         if (strcmp(tempName, lUsr) == 0) {
-            printf("Usu�rio '%s' j� cadastrado.\n", lUsr);
+            printf("Usuario '%s' ja cadastrado.\n", lUsr);
+            system("pause");
+            system("cls");
             fclose(usuarios); // Certifica-se de fechar o arquivo antes de retornar
             return;
         }
@@ -78,7 +81,7 @@ void cadUsr() {
     scanf("%s", roleUsr);
 
     // Adiciona o novo usu�rio ao arquivo
-    fprintf(usuarios, "%s %s %s\n", lUsr, sUsr, roleUsr);
+    fprintf(usuarios, "%s %s %s %s\n", lUsr, sUsr, roleUsr, statusUsr);
     fclose(usuarios);
 
     printf("\nUsuario cadastrado com sucesso!\n\n");
@@ -86,7 +89,7 @@ void cadUsr() {
     system("cls");
 }
 
-void AlterarUsr() {
+void alterarUsr() {
     FILE *usuarios;
     char nomeAntigo[30], novoNome[30], novaSenha[30], novoRole[10], novoStatus[10];
     char tempName[30], tempPass[30], tempRole[10], tempStatus[10];
@@ -203,8 +206,9 @@ int gerUser() {
         cadUsr();
         break;
     case 2:
-//        alterarUsr();
+        alterarUsr();
         system("pause");
+        system("cls");
         break;
     case 3:
         inativarUsuario();

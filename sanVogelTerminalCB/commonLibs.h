@@ -7,6 +7,7 @@
 #include <conio.h>
 #include <locale.h>
 #include <stdbool.h>
+#include <time.h>
 #include "managStrg.h"
 #include "interfaces.h"
 #include "operador.h"

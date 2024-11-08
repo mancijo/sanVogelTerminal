@@ -128,3 +128,24 @@ void editProduct(Product *productPtr, char *element, char *feed) { //funcao para
 }
 
 
+
+void exibirHistoricoVendas() {
+    FILE *historico = fopen("historico_compras.txt", "r+");
+    if (historico == NULL) {
+        printf("Nenhum histórico de compras encontrado.\n");
+        return;
+    }
+
+    Purchase compra;
+
+    printf("\n--- Histórico de Compras ---\n");
+    printf("Produto | Quantidade | Preço Unitário | Preço Total | Data\n");
+    printf("-------------------------------------------------------------\n");
+
+    while (fscanf(historico, "%s %d %f %f %s", compra.productName, &compra.quantity, &compra.unitPrice, &compra.totalPrice, compra.date) != EOF) {
+        printf("%s | %d | R$%.2f | R$%.2f | %s\n", compra.productName, compra.quantity, compra.unitPrice, compra.totalPrice, compra.date);
+    }
+
+    fclose(historico);
+}
+

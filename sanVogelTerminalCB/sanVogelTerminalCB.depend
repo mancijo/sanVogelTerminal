@@ -101,23 +101,24 @@
 1730755982 source:c:\users\mario\sanvogelterminal\sanvogelterminalcb\ti.c
 	"ti.h"
 
-1731020487 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\administrativo.c
+1731089490 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\administrativo.c
 	"commonLibs.h"
 
-1731020487 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\commonlibs.h
+1731087007 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\commonlibs.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<conio.h>
 	<locale.h>
 	<stdbool.h>
+	<time.h>
 	"managStrg.h"
 	"interfaces.h"
 	"operador.h"
 	"administrativo.h"
 	"ti.h"
 
-1731020487 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\managstrg.h
+1731089490 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\managstrg.h
 	"commonLibs.h"
 
 1731021349 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\interfaces.h
@@ -126,24 +127,24 @@
 1731020487 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\operador.h
 	"commonLibs.h"
 
-1731020487 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\administrativo.h
+1731089490 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\administrativo.h
 	"commonLibs.h"
 
 1731025085 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\ti.h
 	"commonLibs.h"
 
-1731025168 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\interfaces.c
+1731089490 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\interfaces.c
 	"interfaces.h"
 
 1731020487 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\main.c
 	"commonLibs.h"
 
-1731020487 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\managstrg.c
+1731089814 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\managstrg.c
 	"managStrg.h"
 
 1731020487 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\operador.c
 	"operador.h"
 
-1731025184 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\ti.c
+1731088846 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\ti.c
 	"ti.h"
 
