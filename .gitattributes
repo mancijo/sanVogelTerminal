@@ -68,3 +68,4 @@ makefile                    text eol=crlf
 *.o merge=ours 
 *.bin merge=ours 
 *.obj merge=ours
+*.layout merge=ours
