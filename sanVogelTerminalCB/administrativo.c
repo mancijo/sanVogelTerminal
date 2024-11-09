@@ -78,10 +78,13 @@ int storageAdmPanel() {
             break;
         case 5:
             exibirHistoricoVendas();
+            system("pause");
+            system("cls");
             break;
         case 0:
             system("cls");
             opcoesAdm();
+            system("cls");
             break;
     }
     return 0;

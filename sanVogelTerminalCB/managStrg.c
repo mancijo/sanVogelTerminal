@@ -127,23 +127,38 @@ void editProduct(Product *productPtr, char *element, char *feed) { //funcao para
     }
 }
 
-
-
-void exibirHistoricoVendas() {
-    FILE *historico = fopen("historico_compras.txt", "r+");
-    if (historico == NULL) {
-        printf("Nenhum histórico de compras encontrado.\n");
+void LogVenda(char *nomeProdutoLog, int quantidadeP, float precoUnitario) {
+    FILE *logFile = fopen("logVendas.txt", "a");
+    if (logFile == NULL) {
+        printf("Erro ao abrir o arquivo de log de vendas.\n");
         return;
     }
 
-    Purchase compra;
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
 
-    printf("\n--- Histórico de Compras ---\n");
-    printf("Produto | Quantidade | Preço Unitário | Preço Total | Data\n");
-    printf("-------------------------------------------------------------\n");
+    float totalPrice = quantidadeP * precoUnitario;
+    char date[20];
+    sprintf(date, "%02d/%02d/%04d %02d:%02d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900, tm.tm_hour, tm.tm_min);
 
-    while (fscanf(historico, "%s %d %f %f %s", compra.productName, &compra.quantity, &compra.unitPrice, &compra.totalPrice, compra.date) != EOF) {
-        printf("%s | %d | R$%.2f | R$%.2f | %s\n", compra.productName, compra.quantity, compra.unitPrice, compra.totalPrice, compra.date);
+    fprintf(logFile, "%s | Produto: %s | Quantidade: %d | Preço Unitario: %.2f | Total: %.2f\n",
+            date, nomeProdutoLog, quantidadeP, precoUnitario, totalPrice);
+
+    fclose(logFile);
+    printf("Venda registrada no log com sucesso!\n");
+}
+
+void exibirHistoricoVendas() {
+    FILE *historico = fopen("logVendas.txt", "r+");
+    if (historico == NULL) {
+        printf("Nenhum histórico de vendas encontrado.\n");
+        return;
+    }
+
+    char linha[256];
+    printf("\n--- Historico de Vendas ---\n");
+    while (fgets(linha, sizeof(linha), historico)) {
+        printf("%s", linha);
     }
 
     fclose(historico);

@@ -212,10 +212,13 @@ int gerUser() {
         break;
     case 3:
         inativarUsuario();
+        system("pause");
+        system("cls");
         break;
     case 0:
         system("cls");
         opcoesMa();
+        system("cls");
         break;
     default:
         printf("Opcao invalida!\n");
@@ -301,7 +304,6 @@ void inativarUsuario() {
             strcasecmp(usuarios[i].status, "Ativo") == 0) {
             strcpy(usuarios[i].status, "inativo");  // Marca o usuário como inativo
             printf("Usuario '%s' foi inativado com sucesso.\n", usuarios[i].login);
-            system("pause");
             usuarioEncontrado = 1;
             break;
         }

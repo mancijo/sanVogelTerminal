@@ -1,0 +1,2 @@
+08/11/2024 23:33 | Produto: Carambola | Quantidade: 1 | Preço Unitário: 19.00 | Total: 19.00
+08/11/2024 23:35 | Produto: coco | Quantidade: 2 | Preço Unitário: 12.00 | Total: 24.00

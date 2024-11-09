@@ -45,7 +45,9 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 break;
             case 2:
                 system("cls");
-
+                venderProduto();
+                system("pause");
+                system("cls");
                 break;
             case 0:
                 printf("Saindo...\n");
@@ -59,29 +61,34 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
         } while (opcaoAdm != 0);
     } else if (strcasecmp(roleArquivo, "Operador") == 0) {
         int opcaoOp;
+
         do {
             opcoeOp();
             printf("Escolha uma opcao: ");
             scanf("%d", &opcaoOp);
             switch (opcaoOp) {
             case 1:
-                //CstEstoque();
+                showAllProducts();
                 system("pause");
                 system("cls");
                 break;
             case 2:
-                printf("vender produto\n");
+                system("cls");
+                venderProduto();
+                system("pause");
+                system("cls");
                 break;
             case 0:
                 printf("Saindo...\n");
                 system("pause");
                 system("cls");
+                exit(0);
                 break;
             default:
                 printf("Opcao invalida!\n");
                 break;
             }
-        } while (opcaoOp != 2);
+        } while (opcaoOp != 0);
     } else if (strcasecmp(roleArquivo, "Master") == 0) {
         int opcaoMa;
         do {
@@ -94,16 +101,14 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 gerUser();
             break;
             case 2:
-                //storageOpPanel();
+                system("cls");
+                showAllProducts();
+                system("pause");
                 system("cls");
             break;
             case 3:
                 system("cls");
-                    //CstEstoque();
-                    system("pause");
-                break;
-            case 4:
-                //cstEstoqueEsp();
+                venderProduto();
                 system("pause");
                 system("cls");
                 break;
@@ -118,17 +123,17 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 opcoesMa();
                 break;
             }
-        } while (opcaoMa != 5);
+        } while (opcaoMa != 0);
     }
 }
+
 
 int login() {
     FILE *usuariosLog;
     char login_dig[30], senha_dig[30];
     char loginArquivo[30], senhaArquivo[30], roleArquivo[10], statusArquivo[10];
-    int loginEncontrado = 0;
+    int loginEncontrado = 0, statusInativo = 0;
 
-    // Estrutura de repeti��o caso o usuario erre a senha
     do {
         usuariosLog = fopen("usuarios.txt", "r+");
 
@@ -141,51 +146,53 @@ int login() {
         scanf("%s", login_dig);
 
         printf("Digite sua senha: ");
-        //mascarando senha
         int i = 0;
         char ch;
         while (1) {
-            ch = getch(); // L� um caractere
+            ch = getch();
 
-            if (ch == '\r') { // Se Enter
-                senha_dig[i] = '\0'; // Termina a string
-                printf("\n"); // Nova linha ap�s a senha
+            if (ch == '\r') {
+                senha_dig[i] = '\0';
+                printf("\n");
                 break;
-            } else if (ch == 8) { // Se Backspace
+            } else if (ch == 8) {
                 if (i > 0) {
-                    i--; // Decrementa o �ndice
-                    printf("\b \b"); // Apaga o �ltimo caractere na tela
-        }
-            } else if (i < 29) { // Limita o tamanho da senha
-                senha_dig[i++] = ch; // Armazena o caractere
-                printf("*"); // Exibe um asterisco
+                    i--;
+                    printf("\b \b");
+                }
+            } else if (i < 29) {
+                senha_dig[i++] = ch;
+                printf("*");
             }
         }
 
         while (fscanf(usuariosLog, "%s %s %s %s", loginArquivo, senhaArquivo, roleArquivo, statusArquivo) != EOF) {
-            // Compara��o case-insensitive para login e senha
-            if (strcasecmp(statusArquivo, "Inativo") == 0) {
-                printf("Usuario Inativo.\n");
-                system("pause");
-                system("cls");
-                login();
+            if (strcasecmp(loginArquivo, login_dig) == 0) {
+                if (strcasecmp(statusArquivo, "Inativo") == 0) {
+                    printf("Usuario Inativo. Por favor entrar com contato com TI.\n");
+                    system("pause");
+                    statusInativo = 1;
+                    system("cls");
+                    break;
                 }
 
-            if (strcasecmp(loginArquivo, login_dig) == 0 && strcmp(senha_dig, senhaArquivo) == 0) {
-                loginEncontrado = 1;
-                printf("\nLogin bem-sucedido! Bem-vindo %s.\n", loginArquivo);
-                system("pause");
-                system("cls");
+                if (strcmp(senha_dig, senhaArquivo) == 0) {
+                    loginEncontrado = 1;
+                    printf("\nLogin bem-sucedido! Bem-vindo %s.\n", loginArquivo);
+                    fclose(usuariosLog);
+                    system("pause");
+                    system("cls");
 
-                defUserPanel(roleArquivo);
-
-                break; // Encerra o loop ap�s encontrar o usu�rio
+                    defUserPanel(roleArquivo);
+                    return 0;
+                }
             }
         }
 
+
         fclose(usuariosLog);
 
-        if (!loginEncontrado) {
+        if (!loginEncontrado && !statusInativo) {
             printf("Login e/ou senha incorretos.\n");
             printf("Deseja tentar novamente? (1 - Sim / 0 - Nao): ");
             int tentar;
@@ -202,4 +209,5 @@ int login() {
 
     return 0;
 }
+
 

@@ -1,3 +1,5 @@
 master 123 Master Ativo
 jhow 123 admin Ativo
 mateus 123 admin Ativo
+mario 123 operador Ativo
+andrei 123 master inativo

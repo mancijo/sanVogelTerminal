@@ -11,13 +11,6 @@ typedef struct {
     bool active;
 } Product;
 
-typedef struct {
-    char productName[30];
-    int quantity;
-    float unitPrice;
-    float totalPrice;
-    char date[20];  // Para armazenar a data da compra
-} Purchase;
 
 FILE *arqIn; // Ponteiro do arquivo
 Product *vProducts; // Ponteiro para a array de produtos
@@ -30,8 +23,9 @@ Product* searchItem(int insertedType, char *insertedSearch);    // Procura um it
 int insertItem();      // Um loop para inserção de produtos
 void showAllProducts ();        // Mostra uma lista de produtos
 void editProduct(Product *productPtr, char *element, char *feed);       // Edita um produto específico
-void exibirHistoricoVenda();
-void registrarVenda();
+void exibirHistoricoVendas();
+void registrarLogVenda();
+
 
 
 #endif

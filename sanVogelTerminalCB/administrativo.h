@@ -3,11 +3,12 @@
 
 #include "commonLibs.h"
 
-void exibirHistoricoVenda();
-void registrarVenda();
+
 void opcoesAdm();
 int storagePanel();
 int editProductPanel();
 void ativarProduto();
+void registrarLogVenda();
+void exibirHistoricoVendas();
 
 #endif // ADMINISTRATIVO_H_INCLUDED
