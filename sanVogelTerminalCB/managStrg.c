@@ -198,4 +198,3 @@ void exibirHistoricoVendas() {
 
     fclose(historico);
 }
-

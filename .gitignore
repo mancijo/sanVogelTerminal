@@ -8,3 +8,7 @@
 # Ignorar arquivos codeblocks
 *.layout 
 *.depend
+
+## Pastas indesejadas
+.idea/
+.vscode/

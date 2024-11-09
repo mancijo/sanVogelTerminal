@@ -201,7 +201,3 @@ void ativarProduto() {
 
     fclose(estoque);
 }
-
-
-
-

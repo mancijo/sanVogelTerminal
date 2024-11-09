@@ -1,0 +1,70 @@
+
+*.css                       text eol=crlf
+*.htm                       text eol=crlf
+*.html                      text eol=crlf
+*.ini                       text eol=crlf
+*.js                        text eol=crlf
+*.jsx                       text eol=crlf
+*.json                      text eol=crlf
+*.less                      text eol=crlf
+*.php                       text eol=crlf
+*.sass                      text eol=crlf
+*.scm                       text eol=crlf
+*.scss                      text eol=crlf
+*.sh                        text eol=crlf
+*.sql                       text eol=crlf
+*.ts                        text eol=crlf
+*.tsx                       text eol=crlf
+*.xml                       text eol=crlf
+*.xhtml                     text eol=crlf
+*.vue                       text eol=crlf
+
+## Documentation
+*.markdown                  text eol=crlf
+*.md                        text eol=crlf
+*.MD                        text eol=crlf
+*.mdwn                      text eol=crlf
+*.mdown                     text eol=crlf
+*.mkd                       text eol=crlf
+*.mkdn                      text eol=crlf
+*.mdtxt                     text eol=crlf
+*.mdtext                    text eol=crlf
+*.txt                       text eol=crlf
+license                     text eol=crlf
+LICENSE                     text eol=crlf
+
+## Templates
+*.dot                       text eol=crlf
+*.ejs                       text eol=crlf
+*.haml                      text eol=crlf
+*.handlebars                text eol=crlf
+*.hbs                       text eol=crlf
+*.hbt                       text eol=crlf
+*.jade                      text eol=crlf
+*.latte                     text eol=crlf
+*.mustache                  text eol=crlf
+*.njk                       text eol=crlf
+*.phtml                     text eol=crlf
+*.tmpl                      text eol=crlf
+*.tpl                       text eol=crlf
+*.twig                      text eol=crlf
+
+## Configs
+.editorconfig               text eol=crlf
+.babelrc                    text eol=crlf
+.eslintrc                   text eol=crlf
+.gitattributes              text eol=crlf
+.gitconfig                  text eol=crlf
+.gitignore                  text eol=crlf
+.watchmanconfig             text eol=crlf
+*.npmignore                 text eol=crlf
+Makefile                    text eol=crlf
+makefile                    text eol=crlf
+*yml                        text eol=crlf
+
+# Manter versão local nos merges 
+*.exe merge=ours 
+*.dll merge=ours 
+*.o merge=ours 
+*.bin merge=ours 
+*.obj merge=ours
