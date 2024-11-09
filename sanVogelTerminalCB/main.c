@@ -11,6 +11,9 @@ void subVirgpPonto(char *str) {
 
 
 int main() {
-    editProductPanel();
+
+    usuarioPadrao();
+    abertura();
+    login();
     return 0;
 }

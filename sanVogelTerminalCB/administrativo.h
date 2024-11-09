@@ -8,6 +8,7 @@ void opcoesAdm();
 int storagePanel();
 int editProductPanel();
 void ativarProduto();
+void inativarProduto();
 void registrarLogVenda();
 void exibirHistoricoVendas();
 

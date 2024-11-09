@@ -118,9 +118,10 @@ int storageAdmPanel() {
     printf("3. Inativar produto.\n");
     printf("4. Ativar produto.\n");
     printf("5. Historico de Vendas.\n");
+    printf("6. Consultar estoque.\n");
     printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
     printf("0. Voltar.                    \n");
-    printf("\033[0m"); // Retorno cor padr�o
+    printf("\033[0m"); // Retorno cor padrao
     printf("==============================\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &ge);
@@ -132,19 +133,27 @@ int storageAdmPanel() {
             break;
         case 2:
             editProductPanel();
+            system("cls");
             break;
         case 3:
-
+            inativarProduto();
+            system("pause");
+            system("cls");
             break;
         case 4:
             ativarProduto();
             system("pause");
+            system("cls");
             break;
         case 5:
             exibirHistoricoVendas();
             system("pause");
             system("cls");
             break;
+        case 6:
+            showAllProducts();
+            system("pause");
+            system("cls");
         case 0:
             system("cls");
             opcoesAdm();
@@ -156,10 +165,10 @@ int storageAdmPanel() {
 
 void ativarProduto() {
     FILE *estoque;
-    estoque = fopen("estoque.txt", "r+");
+    estoque = fopen("productList.dat", "r+b");  // Abrir arquivo binário para leitura e escrita
 
     if (estoque == NULL) {
-        printf("Arquivo n�o pode ser aberto\n");
+        printf("Arquivo nao pode ser aberto\n");
         exit(1);
     }
 
@@ -167,37 +176,66 @@ void ativarProduto() {
     printf("Digite o ID do produto a ser ativado: ");
     scanf("%d", &id);
 
-    char buffer[1000];
+    Product product;
     int found = 0;
 
-    char linhas[100][100];
-    int i = 0;
-
-    while (fgets(buffer, sizeof(buffer), estoque) != NULL) {
-        if (strstr(buffer, "ID:") != NULL && atoi(&buffer[4]) == id) {
+    while (fread(&product, sizeof(Product), 1, estoque)) {
+        if (product.id == id && product.active == 0) {
+            product.active = 1;  // Ativar o produto
+            fseek(estoque, -sizeof(Product), SEEK_CUR);  // Voltar para o início do registro
+            fwrite(&product, sizeof(Product), 1, estoque);  // Reescrever o produto ativado
             found = 1;
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
-            fgets(buffer, sizeof(buffer), estoque);
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
-            fgets(buffer, sizeof(buffer), estoque);
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
-            fgets(buffer, sizeof(buffer), estoque);
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
-            snprintf(linhas[i++], sizeof(linhas[i]), "Ativo: true\n"); // Ativa o produto
-        } else {
-            snprintf(linhas[i++], sizeof(linhas[i]), "%s", buffer);
+            break;
         }
     }
 
     if (found) {
-        freopen("estoque.txt", "w", estoque);
-        for (int j = 0; j < i; j++) {
-            fprintf(estoque, "%s", linhas[j]);
-        }
         printf("Produto ativado com sucesso!\n");
     } else {
-        printf("Produto nao encontrado.\n");
+        printf("Produto nao encontrado ou ja esta ativo.\n");
     }
 
     fclose(estoque);
 }
+
+void inativarProduto() {
+    FILE *estoque;
+    estoque = fopen("productList.dat", "r+b");  // Abrir arquivo binário para leitura e escrita
+
+    if (estoque == NULL) {
+        printf("Arquivo nao pode ser aberto\n");
+        exit(1);
+    }
+
+    int id;
+    printf("Digite o ID do produto a ser inativado: ");
+    scanf("%d", &id);
+
+    Product product;
+    int found = 0;
+
+    // Itera por todos os produtos do arquivo
+    while (fread(&product, sizeof(Product), 1, estoque)) {
+        // Verifica se o produto encontrado tem o ID correto e está ativo
+        if (product.id == id && product.active == 1) {
+            printf("Produto encontrado: ID = %d, Nome = %s, Ativo = %d\n", product.id, product.name, product.active);
+            product.active = 0;  // Inativa o produto
+            fseek(estoque, -sizeof(Product), SEEK_CUR);  // Volta para o início do registro atual no arquivo
+            fwrite(&product, sizeof(Product), 1, estoque);  // Reescreve o produto inativado
+            found = 1;
+            break;  // Sai do loop após inativar o produto
+        }
+    }
+
+    if (found) {
+        printf("Produto inativado com sucesso!\n");
+    } else {
+        printf("Produto nao encontrado ou ja esta inativo.\n");
+    }
+
+    fclose(estoque);
+}
+
+
+
+

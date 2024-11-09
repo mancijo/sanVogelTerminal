@@ -25,7 +25,8 @@ void showAllProducts ();        // Mostra uma lista de produtos
 void editProduct(Product *productPtr, char *element, char *feed);       // Edita um produto específico
 void exibirHistoricoVendas();
 void registrarLogVenda();
-
+void inativarProduto();
+void ativarProduto();
 
 
 #endif
