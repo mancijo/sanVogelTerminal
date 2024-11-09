@@ -1,0 +1,10 @@
+# Ignorar arquivos binários 
+*.exe 
+*.dll 
+*.o 
+*.bin 
+*.obj
+
+# Ignorar arquivos codeblocks
+*.layout 
+*.depend
