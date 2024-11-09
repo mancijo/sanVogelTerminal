@@ -113,18 +113,53 @@ void showAllProducts () {           //Mostrar todos os produtos
     }
 }
 
-void editProduct(Product *productPtr, char *element, char *feed) { //funcao para alterar os dados de produto na array
-    if(strcasecmp(element, "nome") == 0){
-        strcpy(productPtr->name, feed);
-    } else
-    if(strcasecmp(element, "preco") == 0){
-        productPtr->price = atof(feed);
-    } else
-    if(strcasecmp(element, "quantidade") == 0){
-        productPtr->units = atoi(feed);
-    } else {
-        printf("Erro ao editar"); system("pause");
+void editProduct(Product *productPtr, char *element, char *feed) {
+    // Check for null pointers to avoid segmentation fault
+    if (productPtr == NULL || element == NULL || feed == NULL) {
+        printf("Invalid input. Null pointer detected.\n");
+        return;
     }
+
+    // Edit name
+    if (strcasecmp(element, "nome") == 0) {
+        // Ensure the new name doesn't exceed the buffer size
+        if (strlen(feed) < sizeof(productPtr->name)) {
+            strcpy(productPtr->name, feed);
+        } else {
+            printf("Erro: Nome muito longo\n");
+            return;
+        }
+    }
+    // Edit price
+    else if (strcasecmp(element, "preco") == 0) {
+        // Ensure the feed is a valid float value
+        char *endptr;
+        float price = strtof(feed, &endptr);
+        if (*endptr == '\0') {
+            productPtr->price = price;
+        } else {
+            printf("Error: Preco invalido.\n");
+            return;
+        }
+    }
+    // Edit quantity
+    else if (strcasecmp(element, "quantidade") == 0) {
+        // Ensure the feed is a valid integer value
+        char *endptr;
+        int quantity = strtol(feed, &endptr, 10);
+        if (*endptr == '\0') {
+            productPtr->units = quantity;
+        } else {
+            printf("Error: Quantidade invalida.\n");
+            return;
+        }
+    }
+    // If element doesn't match, print an error
+    else {
+        printf("Error: Produto nao encontrado.\n");
+        return;
+    }
+    saveFile();
 }
 
 void LogVenda(char *nomeProdutoLog, int quantidadeP, float precoUnitario) {
