@@ -17,8 +17,7 @@ int editProductPanel() {
     char search[30];
     Product* produtoAlvo;
 
-    puts("Insira 0 para ver todos os produtos.");
-    puts("Deseja usar ID ou o nome do produto?\n1: ID\n2: Nome");
+    puts("Insira 0 para ver todos os produtos. \nInsira 1 para selecionar o produto usando ID. \nInsira 2 para selecionar o produto usando o nome.");
     scanf(" %i", &type);
     if(type != 1 && type != 2 && type != 0){
         puts("Valor invalido.");
@@ -49,7 +48,6 @@ int editProductPanel() {
     puts("Produto encontrado:");
     printf("%i\t\t%s\t\t\t%i\t\t%3.2f\n", produtoAlvo->id, produtoAlvo->name, produtoAlvo->units, produtoAlvo->price);
 
-    int result;
     puts("O que deseja alterar?");
     puts("1. Nome");
     puts("2. Preco");
@@ -97,6 +95,10 @@ int editProductPanel() {
 
             puts("Produto editado!");
             system("pause");
+            break;
+        }
+        case 0: {
+            opcoesAdm();
             break;
         }
         default:
