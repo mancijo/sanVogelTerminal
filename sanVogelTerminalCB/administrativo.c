@@ -2,12 +2,16 @@
 
 
 void opcoesAdm() {
-    printf("\n---------MENU----------\n");
+    printf("\033[1;37;44m"); // cor branca com fundo azul
+    printf("\n-------------MENU-------------\n");
+    printf("\033[0m"); // Retorno cor padr�o
     printf("Escolha uma das opcoes abaixo: \n");
     printf("==============================\n");
     printf("1. Acessar Estoque.\n");
     printf("2. Iniciar vendas.\n");
-    printf("0. Sair.\n");
+    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
+    printf("0. Sair.                      \n");
+    printf("\033[0m"); // Retorno cor padrao
     printf("==============================\n");
 }
 
@@ -18,7 +22,8 @@ int editProductPanel() {
     Product* produtoAlvo;
 
     puts("Insira 0 para ver todos os produtos.");
-    puts("Deseja usar ID ou o nome do produto?\n1: ID\n2: Nome");
+    puts("Deseja usar ID ou o nome do produto? \n1. ID. \n2. Nome.");
+    printf("-------------\n");
     scanf(" %i", &type);
     if(type != 1 && type != 2 && type != 0){
         puts("Valor invalido.");
@@ -70,7 +75,6 @@ int editProductPanel() {
             editProduct(produtoAlvo, "nome", newName);
 
             puts("Produto editado!");
-            system("pause");
             break;
         }
         case 2: {
@@ -83,7 +87,6 @@ int editProductPanel() {
             editProduct(produtoAlvo, "preco", newPrice);
 
             puts("Produto editado!");
-            system("pause");
             break;
         }
         case 3: {
@@ -96,7 +99,6 @@ int editProductPanel() {
             editProduct(produtoAlvo, "quantidade", newQuantity);
 
             puts("Produto editado!");
-            system("pause");
             break;
         }
         default:
