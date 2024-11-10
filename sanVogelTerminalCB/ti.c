@@ -184,7 +184,6 @@ void alterarUsr() {
     fclose(usuarios);
 }
 
-
 int gerUser() {
     int gerUsuario;
     printf("\033[1;37;44m"); // cor branca com fundo azul
@@ -229,9 +228,27 @@ int gerUser() {
     return 0;
 }
 
-int storageTiPanel() {
+int editProductPanelTi() {
+    // Declaração das variáveis
+    int type;
+    char search[30];
+    Product* produtoAlvo;
 
+    puts("Insira 1 para selecionar o produto usando ID. \nInsira 2 para selecionar o produto usando o nome. \nInsira 3 para ver todos os produtos.");
+    scanf(" %i", &type);
+    if(type != 1 && type != 2 && type != 3){
+        puts("Valor invalido.");
+        system("pause");
+        system("cls");
+        return editProductPanel();
+    } // Verificação do caractere
+    if(type == 3) {
+        system("cls");
+        showAllProducts();
+        return editProductPanelTi();
+    } // Mostrar todos os produtos
 
+<<<<<<< HEAD
     int ge;
     printf("\033[1;37;44m"); // cor branca com fundo azul
     printf("\n-------------MENU-------------\n");
@@ -269,13 +286,81 @@ int storageTiPanel() {
             break;
         case 6:
             showAllProducts();
+=======
+    puts((type == 1) ? "Insira o ID do produto." : "Insira o nome do produto.");
+    while (getchar() != '\n' && getchar() != EOF);
+    fgets(search, sizeof(search), stdin);
+    search[strcspn(search, "\n")] = 0; // Remove o '\n'
+
+    produtoAlvo = searchItem(type, search);
+    if (produtoAlvo == NULL) {
+        puts("Produto nao encontrado.");
+        system("pause");
+        system("cls");
+        return editProductPanel();
+    }
+    system("cls");
+
+    puts("Produto encontrado:");
+    printf("%i\t\t%s\t\t\t%i\t\t%3.2f\n", produtoAlvo->id, produtoAlvo->name, produtoAlvo->units, produtoAlvo->price);
+
+    puts("O que deseja alterar?");
+    puts("1. Nome");
+    puts("2. Preco");
+    puts("3. Quantidade");
+    puts("0. Cancelar");
+
+    fflush(stdin);
+    scanf("%i", &type);
+    switch (type) {
+        case 1: {
+            char newName[30];
+
+            puts("\nInsira o novo nome do produto:");
+            while (getchar() != '\n' && getchar() != EOF);
+            fgets(newName, sizeof(newName), stdin);
+            newName[strcspn(newName, "\n")] = 0;
+
+            editProduct(produtoAlvo, "nome", newName);
+
+            puts("Produto editado!");
             break;
-        case 0:
-            system("cls");
+        }
+        case 2: {
+            char newPrice[30];
+            puts("Insira o novo preco do produto:");
+            while (getchar() != '\n' && getchar() != EOF);
+            fgets(newPrice, sizeof(newPrice), stdin);
+            newPrice[strcspn(newPrice, "\n")] = 0;
+
+            editProduct(produtoAlvo, "preco", newPrice);
+
+            puts("Produto editado!");
+            break;
+        }
+        case 3: {
+            char newQuantity[30];
+            puts("Insira a nova quantidade do produto:");
+            while (getchar() != '\n' && getchar() != EOF);
+            fgets(newQuantity, sizeof(newQuantity), stdin);
+            newQuantity[strcspn(newQuantity, "\n")] = 0;
+
+            editProduct(produtoAlvo, "quantidade", newQuantity);
+
+            puts("Produto editado!");
+>>>>>>> f06d7d9bea3d0b78e8966d57ee2ccaf4cb964e61
+            break;
+        }
+        case 0: {
             opcoesMa();
             break;
+        }
+        default:
+            printf("Erro!\n");
+            break;
     }
-    return 0;
+
+    return 1;
 }
 
 void inativarUsuario() {

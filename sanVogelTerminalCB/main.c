@@ -11,7 +11,6 @@ void subVirgpPonto(char *str) {
 
 
 int main() {
-
     usuarioPadrao();
     abertura();
     login();
