@@ -21,13 +21,10 @@ int editProductPanel() {
     char search[30];
     Product* produtoAlvo;
 
-<<<<<<< HEAD
     puts("Insira 0 para ver todos os produtos.");
     puts("Deseja usar ID ou o nome do produto? \n1. ID. \n2. Nome.");
     printf("-------------\n");
-=======
     puts("Insira 0 para ver todos os produtos. \nInsira 1 para selecionar o produto usando ID. \nInsira 2 para selecionar o produto usando o nome.");
->>>>>>> f06d7d9bea3d0b78e8966d57ee2ccaf4cb964e61
     scanf(" %i", &type);
     if(type != 1 && type != 2 && type != 0){
         puts("Valor invalido.");
