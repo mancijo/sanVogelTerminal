@@ -89,6 +89,60 @@ void cadUsr() {
     system("cls");
 }
 
+void inativarUsuario() {
+    Usuario usuarios[MAX_USUARIOS];
+    int totalUsuarios = 0;
+    char loginParaInativar[30];
+    int usuarioEncontrado = 0;
+
+    // Abrir o arquivo de usuários para leitura
+    FILE *file = fopen("usuarios.txt", "r+");
+    if (file == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return;
+    }
+
+    // Carregar todos os usuários do arquivo para a memória
+    while (fscanf(file, "%s %s %s %s", usuarios[totalUsuarios].login, usuarios[totalUsuarios].senha,
+                  usuarios[totalUsuarios].role, usuarios[totalUsuarios].status) == 4) {
+        totalUsuarios++;
+        if (totalUsuarios >= MAX_USUARIOS) {
+            printf("Número máximo de usuários atingido.\n");
+            break; // Evita overflow
+        }
+    }
+
+    // Solicitar o login do usuário a ser inativado
+    printf("Digite o login do usuario que deseja inativar: ");
+    scanf("%s", loginParaInativar);
+
+    // Buscar e inativar o usuário na memória
+    for (int i = 0; i < totalUsuarios; i++) {
+        // Comparar o status de forma case-insensitive
+        if (strcasecmp(usuarios[i].login, loginParaInativar) == 0 &&
+            strcasecmp(usuarios[i].status, "Ativo") == 0) {
+            strcpy(usuarios[i].status, "inativo");  // Marca o usuário como inativo
+            printf("Usuario '%s' foi inativado com sucesso.\n", usuarios[i].login);
+            usuarioEncontrado = 1;
+            break;
+        }
+    }
+
+    if (!usuarioEncontrado) {
+        printf("Usuario '%s' nao encontrado ou ja esta inativo.\n", loginParaInativar);
+    }
+
+    // Voltar ao início do arquivo para sobrescrever os dados
+    rewind(file);
+
+    // Escrever todos os usuários atualizados de volta ao arquivo
+    for (int i = 0; i < totalUsuarios; i++) {
+        fprintf(file, "%s %s %s %s\n", usuarios[i].login, usuarios[i].senha, usuarios[i].role, usuarios[i].status);
+    }
+
+    fclose(file);
+}
+
 void alterarUsr() {
     FILE *usuarios;
     char nomeAntigo[30], novoNome[30], novaSenha[30], novoRole[10], novoStatus[10];
@@ -184,7 +238,6 @@ void alterarUsr() {
     fclose(usuarios);
 }
 
-
 int gerUser() {
     int gerUsuario;
     printf("\033[1;37;44m"); // cor branca com fundo azul
@@ -229,8 +282,25 @@ int gerUser() {
     return 0;
 }
 
-int storageTiPanel() {
+int editProductPanelTi() {
+    // Declaração das variáveis
+    int type;
+    char search[30];
+    Product* produtoAlvo;
 
+    puts("Insira 1 para selecionar o produto usando ID. \nInsira 2 para selecionar o produto usando o nome. \nInsira 3 para ver todos os produtos.");
+    scanf(" %i", &type);
+    if(type != 1 && type != 2 && type != 3){
+        puts("Valor invalido.");
+        system("pause");
+        system("cls");
+        return editProductPanel();
+    } // Verificação do caractere
+    if(type == 3) {
+        system("cls");
+        showAllProducts();
+        return editProductPanelTi();
+    } // Mostrar todos os produtos
 
     int ge;
     printf("\033[1;37;44m"); // cor branca com fundo azul
@@ -270,65 +340,138 @@ int storageTiPanel() {
         case 6:
             showAllProducts();
             break;
+    }
+
+    puts((type == 1) ? "Insira o ID do produto." : "Insira o nome do produto.");
+    while (getchar() != '\n' && getchar() != EOF);
+    fgets(search, sizeof(search), stdin);
+    search[strcspn(search, "\n")] = 0; // Remove o '\n'
+
+    produtoAlvo = searchItem(type, search);
+    if (produtoAlvo == NULL) {
+        puts("Produto nao encontrado.");
+        system("pause");
+        system("cls");
+        return editProductPanel();
+    }
+    system("cls");
+
+    puts("Produto encontrado:");
+    printf("%i\t\t%s\t\t\t%i\t\t%3.2f\n", produtoAlvo->id, produtoAlvo->name, produtoAlvo->units, produtoAlvo->price);
+
+    puts("O que deseja alterar?");
+    puts("1. Nome");
+    puts("2. Preco");
+    puts("3. Quantidade");
+    puts("0. Cancelar");
+
+    fflush(stdin);
+    scanf("%i", &type);
+    switch (type) {
+        case 1: {
+            char newName[30];
+
+            puts("\nInsira o novo nome do produto:");
+            while (getchar() != '\n' && getchar() != EOF);
+            fgets(newName, sizeof(newName), stdin);
+            newName[strcspn(newName, "\n")] = 0;
+
+            editProduct(produtoAlvo, "nome", newName);
+
+            puts("Produto editado!");
+            break;
+        }
+        case 2: {
+            char newPrice[30];
+            puts("Insira o novo preco do produto:");
+            while (getchar() != '\n' && getchar() != EOF);
+            fgets(newPrice, sizeof(newPrice), stdin);
+            newPrice[strcspn(newPrice, "\n")] = 0;
+
+            editProduct(produtoAlvo, "preco", newPrice);
+
+            puts("Produto editado!");
+            break;
+        }
+        case 3: {
+            char newQuantity[30];
+            puts("Insira a nova quantidade do produto:");
+            while (getchar() != '\n' && getchar() != EOF);
+            fgets(newQuantity, sizeof(newQuantity), stdin);
+            newQuantity[strcspn(newQuantity, "\n")] = 0;
+
+            editProduct(produtoAlvo, "quantidade", newQuantity);
+
+            puts("Produto editado!");
+            break;
+        }
+        case 0: {
+            opcoesMa();
+            break;
+        }
+        default:
+            printf("Erro!\n");
+            break;
+    }
+
+    return 1;
+}
+
+int storageTiPanel() {
+    int ge;
+    printf("\033[1;37;44m"); // cor branca com fundo azul
+    printf("\n-------------MENU-------------\n");
+    printf("\033[0m"); // Retorno cor padr�o
+    printf("==============================\n");
+    printf("1. Cadastrar produtos.\n");
+    printf("2. Editar produto.\n");
+    printf("3. Inativar produto.\n");
+    printf("4. Ativar produto.\n");
+    printf("5. Historico de Vendas.\n");
+    printf("6. Consultar estoque.\n");
+    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
+    printf("0. Voltar.                    \n");
+    printf("\033[0m"); // Retorno cor padrao
+    printf("==============================\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &ge);
+
+    switch (ge) {
+        case 1:
+            system("cls");
+            insertItem();
+            break;
+        case 2:
+            editProductPanelTi();
+            system("cls");
+            break;
+        case 3:
+            inativarProduto();
+            system("pause");
+            system("cls");
+            break;
+        case 4:
+            ativarProduto();
+            system("pause");
+            system("cls");
+            break;
+        case 5:
+            exibirHistoricoVendas();
+            system("pause");
+            system("cls");
+            break;
+        case 6:
+            showAllProducts();
+            system("pause");
+            system("cls");
         case 0:
             system("cls");
             opcoesMa();
+            system("cls");
             break;
     }
     return 0;
 }
 
-void inativarUsuario() {
-    Usuario usuarios[MAX_USUARIOS];
-    int totalUsuarios = 0;
-    char loginParaInativar[30];
-    int usuarioEncontrado = 0;
 
-    // Abrir o arquivo de usuários para leitura
-    FILE *file = fopen("usuarios.txt", "r+");
-    if (file == NULL) {
-        perror("Erro ao abrir o arquivo");
-        return;
-    }
-
-    // Carregar todos os usuários do arquivo para a memória
-    while (fscanf(file, "%s %s %s %s", usuarios[totalUsuarios].login, usuarios[totalUsuarios].senha,
-                  usuarios[totalUsuarios].role, usuarios[totalUsuarios].status) == 4) {
-        totalUsuarios++;
-        if (totalUsuarios >= MAX_USUARIOS) {
-            printf("Número máximo de usuários atingido.\n");
-            break; // Evita overflow
-        }
-    }
-
-    // Solicitar o login do usuário a ser inativado
-    printf("Digite o login do usuario que deseja inativar: ");
-    scanf("%s", loginParaInativar);
-
-    // Buscar e inativar o usuário na memória
-    for (int i = 0; i < totalUsuarios; i++) {
-        // Comparar o status de forma case-insensitive
-        if (strcasecmp(usuarios[i].login, loginParaInativar) == 0 &&
-            strcasecmp(usuarios[i].status, "Ativo") == 0) {
-            strcpy(usuarios[i].status, "inativo");  // Marca o usuário como inativo
-            printf("Usuario '%s' foi inativado com sucesso.\n", usuarios[i].login);
-            usuarioEncontrado = 1;
-            break;
-        }
-    }
-
-    if (!usuarioEncontrado) {
-        printf("Usuario '%s' nao encontrado ou ja esta inativo.\n", loginParaInativar);
-    }
-
-    // Voltar ao início do arquivo para sobrescrever os dados
-    rewind(file);
-
-    // Escrever todos os usuários atualizados de volta ao arquivo
-    for (int i = 0; i < totalUsuarios; i++) {
-        fprintf(file, "%s %s %s %s\n", usuarios[i].login, usuarios[i].senha, usuarios[i].role, usuarios[i].status);
-    }
-
-    fclose(file);
-}
 
