@@ -148,7 +148,7 @@
 1731170967 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\ti.c
 	"ti.h"
 
-1731355195 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\administrativo.c
+1731166567 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\administrativo.c
 	"commonLibs.h"
 
 1731162301 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\commonlibs.h
@@ -165,7 +165,7 @@
 	"administrativo.h"
 	"ti.h"
 
-1731180880 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\managstrg.h
+1731162301 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\managstrg.h
 	"commonLibs.h"
 
 1731162301 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\interfaces.h
@@ -174,24 +174,24 @@
 1731162301 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\operador.h
 	"commonLibs.h"
 
-1731180880 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\administrativo.h
+1731162301 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\administrativo.h
 	"commonLibs.h"
 
 1731162301 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\ti.h
 	"commonLibs.h"
 
-1731355208 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\interfaces.c
+1731162301 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\interfaces.c
 	"interfaces.h"
 
-1731183356 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\main.c
+1731163977 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\main.c
 	"commonLibs.h"
 
-1731355113 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\managstrg.c
+1731165809 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\managstrg.c
 	"managStrg.h"
 
-1731355113 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\operador.c
+1731162301 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\operador.c
 	"operador.h"
 
-1731355395 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\ti.c
+1731162301 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\ti.c
 	"ti.h"
 
