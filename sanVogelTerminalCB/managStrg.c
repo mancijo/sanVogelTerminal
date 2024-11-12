@@ -88,7 +88,7 @@ int insertItem () {                  // Loop de inserção de itens
         fgets(newProduct.name, sizeof(newProduct.name), stdin);
         newProduct.name[strcspn(newProduct.name, "\n")] = 0; // Remove o '\n'
 
-        printf("Preço: ");
+        printf("Preco: ");
         scanf("%f", &newProduct.price);
         printf("Unidades: ");
         scanf("%i", &newProduct.units);
@@ -176,7 +176,7 @@ void LogVenda(char *nomeProdutoLog, int quantidadeP, float precoUnitario) {
     char date[20];
     sprintf(date, "%02d/%02d/%04d %02d:%02d", tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900, tm.tm_hour, tm.tm_min);
 
-    fprintf(logFile, "%s | Produto: %s | Quantidade: %d | Preço Unitario: %.2f | Total: %.2f\n",
+    fprintf(logFile, "%s | Produto: %s | Quantidade: %d | Preco Unitario: %.2f | Total: %.2f\n",
             date, nomeProdutoLog, quantidadeP, precoUnitario, totalPrice);
 
     fclose(logFile);

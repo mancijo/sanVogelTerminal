@@ -285,10 +285,10 @@ int gerUser() {
 int editProductPanelTi() {
     // Declaração das variáveis
     int type;
-    char search[30];
+    char search[30], searchNI[30];
     Product* produtoAlvo;
 
-    puts("Insira 1 para selecionar o produto usando ID. \nInsira 2 para selecionar o produto usando o nome. \nInsira 3 para ver todos os produtos.");
+    puts("Insira 1 para selecionar o produto usando ID. \nInsira 2 para selecionar o produto usando o nome. \n");
     scanf(" %i", &type);
     if(type != 1 && type != 2 && type != 3){
         puts("Valor invalido.");
@@ -296,43 +296,12 @@ int editProductPanelTi() {
         system("cls");
         return editProductPanel();
     } // Verificação do caractere
-    if(type == 3) {
+ /*   if(type == 3) {
         system("cls");
         showAllProducts();
-        return editProductPanelTi();
-    } // Mostrar todos os produtos
+    } */// Mostrar todos os produtos
 
-    int ge;
-    printf("\033[1;37;44m"); // cor branca com fundo azul
-    printf("\n-------------MENU-------------\n");
-    printf("\033[0m"); // Retorno cor padr�o
-    printf("==============================\n");
-    printf("1. Cadastrar produtos.\n");
-    printf("2. Editar produto.\n");
-    printf("3. Inativar produto.\n");
-    printf("4. Ativar produto.\n");
-    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
-    printf("0. Voltar.                    \n");
-    printf("\033[0m"); // Retorno cor padr�o
-    printf("==============================\n");
-    printf("Escolha uma opcao: ");
-    scanf("%d", &ge);
 
-    switch (ge) {
-        case 1:
-            insertItem();
-            break;
-        case 2:
-
-            break;
-        case 3:
-
-            break;
-        case 4:
-
-            system("pause");
-            break;
-    }
 
     puts((type == 1) ? "Insira o ID do produto." : "Insira o nome do produto.");
     while (getchar() != '\n' && getchar() != EOF);
