@@ -102,8 +102,7 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
             break;
             case 2:
                 system("cls");
-                storageTiPanel();
-                editProductPanelTi();
+                showAllProducts();
                 system("pause");
                 system("cls");
             break;

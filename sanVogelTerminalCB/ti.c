@@ -3,7 +3,7 @@
 void opcoesMa() {
     printf("\033[1;37;44m");//cor branca com fundo azul
     printf("\n-------------MENU-------------\n");
-    printf("\033[0m");// Retorno cor padrao
+    printf("\033[0m");// Retorno cor padr�o
     printf("==============================\n");
     printf("Escolha uma das opcoes abaixo: \n");
     printf("\n");
@@ -40,14 +40,14 @@ void cadUsr() {
             printf("Usuario '%s' ja cadastrado.\n", lUsr);
             system("pause");
             system("cls");
-            fclose(usuarios); // fechar o arquivo antes de retornar
+            fclose(usuarios); // Certifica-se de fechar o arquivo antes de retornar
             return;
         }
     }
 
     fclose(usuarios);
 
-    // Abre o arquivo novamente em modo de adicao
+    // Abre o arquivo novamente em modo de adi��o
     usuarios = fopen("usuarios.txt", "a+");
     if (usuarios == NULL) {
         printf("Arquivo nao pode ser aberto\n");
@@ -60,16 +60,16 @@ void cadUsr() {
     int i = 0;
     char ch;
     while (1) {
-        ch = getch(); // Le um caractere
+        ch = getch(); // L� um caractere
 
-        if (ch == '\r') {
+        if (ch == '\r') { // Se Enter
             sUsr[i] = '\0'; // Termina a string
-            printf("\n"); // Nova linha apos a senha
+            printf("\n"); // Nova linha ap�s a senha
             break;
-        } else if (ch == 8) {
+        } else if (ch == 8) { // Se Backspace
             if (i > 0) {
-                i--;
-                printf("\b \b"); // Apaga o ultimo caractere na tela
+                i--; // Decrementa o �ndice
+                printf("\b \b"); // Apaga o �ltimo caractere na tela
     }
         } else if (i < 29) { // Limita o tamanho da senha
             sUsr[i++] = ch; // Armazena o caractere
@@ -80,7 +80,7 @@ void cadUsr() {
     printf("\nEscolha um nivel de hierarquia (Operador, Admin, Master): ");
     scanf("%s", roleUsr);
 
-    // Adiciona o novo usuario ao arquivo
+    // Adiciona o novo usu�rio ao arquivo
     fprintf(usuarios, "%s %s %s %s\n", lUsr, sUsr, roleUsr, statusUsr);
     fclose(usuarios);
 
@@ -167,12 +167,12 @@ void alterarUsr() {
         i++;
     }
 
-    // Procura pelo usuario a ser alterado
+    // Procura pelo usuário a ser alterado
     for (int j = 0; j < i; j++) {
-        if (strstr(linhas[j], nomeAntigo) != NULL) { // Verifica se o usuario esta na linha
+        if (strstr(linhas[j], nomeAntigo) != NULL) { // Verifica se o usuário está na linha
             found = 1;
 
-            // Alteracao do nome
+            // Alteração do nome
             printf("Usuario encontrado! \nDeseja alterar o nome? (1 - Sim / 0 - Nao): ");
             int alterarNome;
             scanf("%d", &alterarNome);
@@ -311,34 +311,26 @@ int editProductPanelTi() {
     printf("2. Editar produto.\n");
     printf("3. Inativar produto.\n");
     printf("4. Ativar produto.\n");
-    printf("5. Historico de Vendas.\n");
-    printf("6. Consultar estoque.\n");
     printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
     printf("0. Voltar.                    \n");
-    printf("\033[0m"); // Retorno cor padrao
+    printf("\033[0m"); // Retorno cor padr�o
     printf("==============================\n");
     printf("Escolha uma opcao: ");
     scanf("%d", &ge);
 
     switch (ge) {
         case 1:
-            system("cls");
             insertItem();
             break;
         case 2:
-            editProductPanel();
+
             break;
         case 3:
-            inativarProduto();
+
             break;
         case 4:
-            ativarProduto();
-            break;
-        case 5:
-            exibirHistoricoVendas();
-            break;
-        case 6:
-            showAllProducts();
+
+            system("pause");
             break;
     }
 

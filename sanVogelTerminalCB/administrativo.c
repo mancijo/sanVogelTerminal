@@ -2,16 +2,12 @@
 
 
 void opcoesAdm() {
-    printf("\033[1;37;44m"); // cor branca com fundo azul
-    printf("\n-------------MENU-------------\n");
-    printf("\033[0m"); // Retorno cor padr�o
+    printf("\n---------MENU----------\n");
     printf("Escolha uma das opcoes abaixo: \n");
     printf("==============================\n");
     printf("1. Acessar Estoque.\n");
     printf("2. Iniciar vendas.\n");
-    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
-    printf("0. Sair.                      \n");
-    printf("\033[0m"); // Retorno cor padrao
+    printf("0. Sair.\n");
     printf("==============================\n");
 }
 
@@ -22,9 +18,7 @@ int editProductPanel() {
     Product* produtoAlvo;
 
     puts("Insira 0 para ver todos os produtos.");
-    puts("Deseja usar ID ou o nome do produto? \n1. ID. \n2. Nome.");
-    printf("-------------\n");
-    puts("Insira 0 para ver todos os produtos. \nInsira 1 para selecionar o produto usando ID. \nInsira 2 para selecionar o produto usando o nome.");
+    puts("Deseja usar ID ou o nome do produto?\n1: ID\n2: Nome");
     scanf(" %i", &type);
     if(type != 1 && type != 2 && type != 0){
         puts("Valor invalido.");
@@ -55,6 +49,7 @@ int editProductPanel() {
     puts("Produto encontrado:");
     printf("%i\t\t%s\t\t\t%i\t\t%3.2f\n", produtoAlvo->id, produtoAlvo->name, produtoAlvo->units, produtoAlvo->price);
 
+    int result;
     puts("O que deseja alterar?");
     puts("1. Nome");
     puts("2. Preco");
@@ -75,6 +70,7 @@ int editProductPanel() {
             editProduct(produtoAlvo, "nome", newName);
 
             puts("Produto editado!");
+            system("pause");
             break;
         }
         case 2: {
@@ -87,6 +83,7 @@ int editProductPanel() {
             editProduct(produtoAlvo, "preco", newPrice);
 
             puts("Produto editado!");
+            system("pause");
             break;
         }
         case 3: {
@@ -99,10 +96,7 @@ int editProductPanel() {
             editProduct(produtoAlvo, "quantidade", newQuantity);
 
             puts("Produto editado!");
-            break;
-        }
-        case 0: {
-            opcoesAdm();
+            system("pause");
             break;
         }
         default:
@@ -241,7 +235,6 @@ void inativarProduto() {
 
     fclose(estoque);
 }
-
 
 
 

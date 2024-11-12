@@ -1,20 +1,18 @@
 #include "operador.h"
 
 void opcoeOp() {
-    printf("\033[1;37;44m"); // cor branca com fundo azul
-    printf("\n-------------MENU-------------\n");
-    printf("\033[0m"); // Retorno cor padrï¿½o
+    printf("\033[1;37;44m");//cor branca com fundo azul
+    printf("\n---------MENU----------\n");
+    printf("\033[0m");// Retorno cor padro
     printf("Escolha uma das opcoes abaixo: \n");
     printf("==============================\n");
     printf("1. Consultar Estoque.\n");
     printf("2. Vender produto.\n");
-     printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
-    printf("0. Sair.                      \n");
-    printf("\033[0m"); // Retorno cor padrao
+    printf("0. Sair.\n");
     printf("==============================\n");
 }
 void storageOpPanel() {
-    printf("Nao implementado!\n");
+    printf("Não implementado!\n");
 }
 
 void LogVenda(char *nomeProdutoLog, int quantidadeP, float precoUnitario);
@@ -35,12 +33,12 @@ void venderProduto() {
     produtoSelecionado = searchItem(1, idStr);
 
     if (produtoSelecionado == NULL) {
-        printf("Produto nao encontrado.\n");
+        printf("Produto não encontrado.\n");
         return;
     }
 
     if (!produtoSelecionado->active) {
-        printf("O produto esta inativo e nao pode ser vendido.\n");
+        printf("O produto está inativo e não pode ser vendido.\n");
         return;
     }
 
@@ -53,7 +51,7 @@ void venderProduto() {
     scanf("%d", &quantidadeDesejada);
 
     if (quantidadeDesejada > produtoSelecionado->units) {
-        printf("Quantidade indisponivel em estoque.\n");
+        printf("Quantidade indisponível em estoque.\n");
         return;
     }
 
