@@ -8,7 +8,9 @@ void opcoeOp() {
     printf("==============================\n");
     printf("1. Consultar Estoque.\n");
     printf("2. Vender produto.\n");
-    printf("0. Sair.\n");
+    printf("\033[1;37;41m\n"); // Cor branca com fundo vermelho
+    printf("0. Sair.                      \n");
+    printf("\033[0m"); // Retorno cor padrao
     printf("==============================\n");
 }
 void storageOpPanel() {
