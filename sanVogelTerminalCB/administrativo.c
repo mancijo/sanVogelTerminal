@@ -53,7 +53,6 @@ int editProductPanel() {
     puts("Produto encontrado:");
     printf("%i\t\t%s\t\t\t%i\t\t%3.2f\n", produtoAlvo->id, produtoAlvo->name, produtoAlvo->units, produtoAlvo->price);
 
-    int result;
     puts("O que deseja alterar?");
     puts("1. Nome");
     puts("2. Preco");
