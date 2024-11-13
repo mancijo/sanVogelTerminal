@@ -8,6 +8,7 @@
 #include <locale.h>
 #include <stdbool.h>
 #include <time.h>
+#include "tools.h"
 #include "managStrg.h"
 #include "interfaces.h"
 #include "operador.h"

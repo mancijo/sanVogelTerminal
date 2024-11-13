@@ -60,7 +60,7 @@ int editProductPanel() {
     puts("0. Cancelar");
 
     fflush(stdin);
-    scanf("%i", &type);
+    readInt(&type);
     switch (type) {
         case 1: {
             char newName[30];
@@ -127,7 +127,7 @@ int storageAdmPanel() {
     printf("\033[0m"); // Retorno cor padrao
     printf("==============================\n");
     printf("Escolha uma opcao: ");
-    scanf("%d", &ge);
+    readInt(&ge);
 
     switch (ge) {
         case 1:
@@ -177,7 +177,7 @@ void ativarProduto() {
 
     int id;
     printf("Digite o ID do produto a ser ativado: ");
-    scanf("%d", &id);
+    readInt(&id);
 
     Product product;
     int found = 0;
@@ -212,7 +212,7 @@ void inativarProduto() {
 
     int id;
     printf("Digite o ID do produto a ser inativado: ");
-    scanf("%d", &id);
+    readInt(&id);
 
     Product product;
     int found = 0;

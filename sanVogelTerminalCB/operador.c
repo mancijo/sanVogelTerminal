@@ -14,7 +14,7 @@ void opcoeOp() {
     printf("==============================\n");
 }
 void storageOpPanel() {
-    printf("Não implementado!\n");
+    printf("Nï¿½o implementado!\n");
 }
 
 void LogVenda(char *nomeProdutoLog, int quantidadeP, float precoUnitario);
@@ -27,7 +27,7 @@ void venderProduto() {
 
     // Buscar o produto pelo ID
     printf("Digite o ID do produto que deseja vender: ");
-    scanf("%d", &produtoID);
+    readInt(&produtoID);
 
     // Busca o produto no estoque
     char idStr[10];
@@ -35,12 +35,12 @@ void venderProduto() {
     produtoSelecionado = searchItem(1, idStr);
 
     if (produtoSelecionado == NULL) {
-        printf("Produto não encontrado.\n");
+        printf("Produto nï¿½o encontrado.\n");
         return;
     }
 
     if (!produtoSelecionado->active) {
-        printf("O produto está inativo e não pode ser vendido.\n");
+        printf("O produto estï¿½ inativo e nï¿½o pode ser vendido.\n");
         return;
     }
 
@@ -50,10 +50,10 @@ void venderProduto() {
 
     // Solicitar a quantidade desejada para venda
     printf("Digite a quantidade desejada: ");
-    scanf("%d", &quantidadeDesejada);
+    readInt(&quantidadeDesejada);
 
     if (quantidadeDesejada > produtoSelecionado->units) {
-        printf("Quantidade indisponível em estoque.\n");
+        printf("Quantidade indisponï¿½vel em estoque.\n");
         return;
     }
 

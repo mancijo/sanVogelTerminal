@@ -90,7 +90,7 @@ int insertItem () {                  // Loop de inserção de itens
         printf("Preço: ");
         scanf("%f", &newProduct.price);
         printf("Unidades: ");
-        scanf("%i", &newProduct.units);
+        readInt(&newProduct.units);
         getchar(); // Limpa o buffer
 
         fwrite(&newProduct, sizeof(newProduct), 1, arqIn);

@@ -1,6 +1,6 @@
 #include "managStrg.h"
 
-int readFile() {            //Lê o arquivo e gera a array
+int readFile() {            //Lï¿½ o arquivo e gera a array
     // Abre o arquivo e verifica se abriu
     size_t fSize;
     productQuantity = 0;
@@ -13,7 +13,7 @@ int readFile() {            //Lê o arquivo e gera a array
     fSize = ftell(arqIn);
     productQuantity = fSize / sizeof(Product);
     fseek(arqIn, 0l, SEEK_SET);
-    // Aloca memória para o vetor
+    // Aloca memï¿½ria para o vetor
     vProducts = malloc(fSize);
     if (!vProducts) {
         fclose(arqIn);
@@ -39,7 +39,7 @@ void saveFile() {           // Salva o vetor no arquivo binario
     fclose(arqIn);
 }
 
-//Função para busca de itens no estoque
+//Funï¿½ï¿½o para busca de itens no estoque
 Product* searchItem(int insertedType, char *insertedSearch) { // A funcao recebe dois parametros e retorna um item com a struct Product
     readFile();
     switch(insertedType) {
@@ -63,8 +63,8 @@ Product* searchItem(int insertedType, char *insertedSearch) { // A funcao recebe
     return NULL;
 }
 
-int insertItem () {                  // Loop de inserção de itens
-    readFile();                                 // Atualiza quantidade de produtos (necessário para definir ID)
+int insertItem () {                  // Loop de inserï¿½ï¿½o de itens
+    readFile();                                 // Atualiza quantidade de produtos (necessï¿½rio para definir ID)
     arqIn = fopen("productList.dat", "ab");
     if(!arqIn){                                 // Abre o arquivo em forma de append e valida se abriu
         printf("file error");
@@ -82,7 +82,7 @@ int insertItem () {                  // Loop de inserção de itens
             break;
         }
 
-        Product newProduct = { productQuantity++, "", 0.0f, 0, true }; // Define os valores padrão
+        Product newProduct = { productQuantity++, "", 0.0f, 0, true }; // Define os valores padrï¿½o
 
         printf("Nome: ");
         fgets(newProduct.name, sizeof(newProduct.name), stdin);
@@ -91,7 +91,7 @@ int insertItem () {                  // Loop de inserção de itens
         printf("Preco: ");
         scanf("%f", &newProduct.price);
         printf("Unidades: ");
-        scanf("%i", &newProduct.units);
+        readInt(&newProduct.units);
         fflush(stdin);
 
         fwrite(&newProduct, sizeof(newProduct), 1, arqIn);
@@ -186,7 +186,7 @@ void LogVenda(char *nomeProdutoLog, int quantidadeP, float precoUnitario) {
 void exibirHistoricoVendas() {
     FILE *historico = fopen("logVendas.txt", "r+");
     if (historico == NULL) {
-        printf("Nenhum histórico de vendas encontrado.\n");
+        printf("Nenhum histï¿½rico de vendas encontrado.\n");
         return;
     }
 

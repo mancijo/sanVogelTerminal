@@ -111,7 +111,7 @@ int insertItem () {                  // Loop de inserção de itens
         printf("Preço: ");
         scanf("%f", &newProduct.price);
         printf("Unidades: ");
-        scanf("%i", &newProduct.units);
+        readInt(&newProduct.units);
         getchar(); // Limpa o buffer
 
         fwrite(&newProduct, sizeof(newProduct), 1, arqIn);
@@ -304,7 +304,7 @@ int gerUser() {
     printf("\033[0m"); // Retorno cor padrão
     printf("==============================\n");
     printf("Escolha uma opcao: ");
-    scanf("%d", &gerUsuario);
+    readInt(&gerUsuario);
 
     switch (gerUsuario) {
     case 1:
@@ -362,7 +362,7 @@ void AlterarUsr() {
             found = 1;
             printf("Usuário encontrado! Deseja alterar o nome? (1 - Sim / 0 - Não): ");
             int alterarNome;
-            scanf("%d", &alterarNome);
+            readInt(&alterarNome);
             if (alterarNome) {
                 printf("Digite o novo nome: ");
                 scanf("%s", novoNome);
@@ -372,7 +372,7 @@ void AlterarUsr() {
 
             printf("Deseja alterar a senha? (1 - Sim / 0 - Não): ");
             int alterarSenha;
-            scanf("%d", &alterarSenha);
+            readInt(&alterarSenha);
             if (alterarSenha) {
                 printf("Digite a nova senha: ");
                 int k = 0;
@@ -388,7 +388,7 @@ void AlterarUsr() {
 
             printf("Deseja alterar o nível de hierarquia? (1 - Sim / 0 - Não): ");
             int alterarRole;
-            scanf("%d", &alterarRole);
+            readInt(&alterarRole);
             if (alterarRole) {
                 printf("Digite o novo nível de hierarquia (Operador, Admin, Master): ");
                 scanf("%s", novoRole);
@@ -423,7 +423,7 @@ void AtivarProduto() {
 
     int id;
     printf("Digite o ID do produto a ser ativado: ");
-    scanf("%d", &id);
+    readInt(&id);
 
     char buffer[1000];
     int found = 0;
@@ -476,7 +476,7 @@ int gerEstq() {
     printf("\033[0m"); // Retorno cor padrão
     printf("==============================\n");
     printf("Escolha uma opcao: ");
-    scanf("%d", &ge);
+    readInt(&ge);
 
     switch (ge) {
         case 1:
@@ -520,7 +520,7 @@ case 4:
 
 //     int id;
 //     printf("Digite o ID do produto a ser inativado: ");
-//     scanf("%d", &id);
+//     readInt(&id);
 
 //     char buffer[1000];
 //     int found = 0;
@@ -611,7 +611,7 @@ int login() {
                     do {
                         opcoesAdm();
                         printf("Escolha uma opcao: ");
-                        scanf("%d", &opcaoAdm);
+                        readInt(&opcaoAdm);
                         switch (opcaoAdm) {
                         case 1:
                             system("pause");
@@ -638,7 +638,7 @@ int login() {
                     do {
                         opcoeOp();
                         printf("Escolha uma opcao: ");
-                        scanf("%d", &opcaoOp);
+                        readInt(&opcaoOp);
                         switch (opcaoOp) {
                         case 1:
                             //CstEstoque();
@@ -663,7 +663,7 @@ int login() {
                     do {
                         opcoesMa();
                         printf("Escolha uma opcao: ");
-                        scanf("%d", &opcaoMa);
+                        readInt(&opcaoMa);
                         switch (opcaoMa) {
                         case 1:
                             system("cls");
@@ -706,7 +706,7 @@ int login() {
             printf("Login e/ou senha incorretos.\n");
             printf("Deseja tentar novamente? (1 - Sim / 0 - Nao): ");
             int tentar;
-            scanf("%d", &tentar);
+            readInt(&tentar);
             if (!tentar) {
                 printf("Saindo...\n");
                 system("pause");

@@ -1,24 +1,5 @@
 #include "interfaces.h"
 
-void usuarioPadrao() {
-    FILE *usuarios = fopen("usuarios.txt", "r");
-
-    if (usuarios != NULL){
-        fclose(usuarios);
-        return;
-    }
-        usuarios = fopen("usuarios.txt", "w");
-        if (usuarios != NULL) {
-            fprintf(usuarios, "master 123 Master Ativo\n");
-
-            fclose(usuarios);
-        } else {
-            perror("Erro ao abrir o arquivo de usuarios.\n");
-            exit(1);
-    }
-}
-
-
 void abertura() {
     printf("==============================\n");
     printf("     BEM-VINDO AO SISTEMA     \n");
@@ -37,7 +18,7 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
         do {
             opcoesAdm();
             printf("Escolha uma opcao: ");
-            scanf("%d", &opcaoAdm);
+            readInt(&opcaoAdm);
             switch (opcaoAdm) {
             case 1:
                 system("cls");
@@ -65,7 +46,7 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
         do {
             opcoeOp();
             printf("Escolha uma opcao: ");
-            scanf("%d", &opcaoOp);
+            readInt(&opcaoOp);
             switch (opcaoOp) {
             case 1:
                 showAllProducts();
@@ -94,7 +75,7 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
         do {
             opcoesMa();
             printf("Escolha uma opcao: ");
-            scanf("%d", &opcaoMa);
+            readInt(&opcaoMa);
             switch (opcaoMa) {
             case 1:
                 system("cls");
@@ -126,7 +107,6 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
         } while (opcaoMa != 0);
     }
 }
-
 
 int login() {
     FILE *usuariosLog;
@@ -196,7 +176,7 @@ int login() {
             printf("Login e/ou senha incorretos.\n");
             printf("Deseja tentar novamente? (1 - Sim / 0 - Nao): ");
             int tentar;
-            scanf("%d", &tentar);
+            readInt(&tentar);
             if (!tentar) {
                 printf("Saindo...\n");
                 system("pause");

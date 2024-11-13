@@ -121,7 +121,7 @@ void alterarUsr() {
             // Alteração do nome
             printf("Usuario encontrado! \nDeseja alterar o nome? (1 - Sim / 0 - Nao): ");
             int alterarNome;
-            scanf("%d", &alterarNome);
+            readInt(&alterarNome);
             if (alterarNome) {
                 printf("Digite o novo nome: ");
                 scanf("%s", novoNome);
@@ -132,7 +132,7 @@ void alterarUsr() {
             // Alteração da senha
             printf("Deseja alterar a senha? (1 - Sim / 0 - Nao): ");
             int alterarSenha;
-            scanf("%d", &alterarSenha);
+            readInt(&alterarSenha);
             if (alterarSenha) {
                 printf("Digite a nova senha: ");
                 int k = 0;
@@ -149,7 +149,7 @@ void alterarUsr() {
             // Alteração do nível de hierarquia
             printf("Deseja alterar o nivel de hierarquia? (1 - Sim / 0 - Nao): ");
             int alterarRole;
-            scanf("%d", &alterarRole);
+            readInt(&alterarRole);
             if (alterarRole) {
                 printf("Digite o novo nivel de hierarquia (Operador, Admin, Master): ");
                 scanf("%s", novoRole);
@@ -160,7 +160,7 @@ void alterarUsr() {
             // Alteração do status
             printf("Deseja alterar o status do usuario? (1 - Sim / 0 - Nao): ");
             int alterarStatus;
-            scanf("%d", &alterarStatus);
+            readInt(&alterarStatus);
             if (alterarStatus) {
                 printf("Digite o novo status do usuario (Ativo ou Inativo): ");
                 scanf("%s", novoStatus);
@@ -199,7 +199,7 @@ int gerUser() {
     printf("\033[0m"); // Retorno cor padr�o
     printf("==============================\n");
     printf("Escolha uma opcao: ");
-    scanf("%d", &gerUsuario);
+    readInt(&gerUsuario);
 
     switch (gerUsuario) {
     case 1:
@@ -274,7 +274,7 @@ int editProductPanelTi() {
     puts("0. Cancelar");
 
     fflush(stdin);
-    scanf("%i", &type);
+    readInt(&type);
     switch (type) {
         case 1: {
             char newName[30];
@@ -342,7 +342,7 @@ int storageTiPanel() {
     printf("\033[0m"); // Retorno cor padrao
     printf("==============================\n");
     printf("Escolha uma opcao: ");
-    scanf("%d", &ge);
+    readInt(&ge);
 
     switch (ge) {
         case 1:
