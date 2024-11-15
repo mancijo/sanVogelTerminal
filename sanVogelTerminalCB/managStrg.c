@@ -90,6 +90,9 @@ int insertItem () {                  // Loop de inser��o de itens
 
         printf("Preco: ");
         scanf("%f", &newProduct.price);
+        while (getchar() != '\n'); // Limpa o buffer
+
+
         printf("Unidades: ");
         readInt(&newProduct.units);
         fflush(stdin);
