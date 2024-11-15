@@ -4,3 +4,4 @@ mateus 123 admin Ativo
 mario 123 operador Ativo
 andrei 123 master inativo
 operador 123 operador Ativo
+admin 123 admin Ativo
