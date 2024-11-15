@@ -12,9 +12,9 @@ typedef struct {
 } Product;
 
 
-FILE *arqIn; // Ponteiro do arquivo
-Product *vProducts; // Ponteiro para a array de produtos
-int productQuantity; // Quantidade de produtos
+extern FILE *arqIn; // Ponteiro do arquivo
+extern Product *vProducts; // Ponteiro para a array de produtos
+extern int productQuantity; // Quantidade de produtos
 
 
 int readFile();         // Lê o arquivo e cria o vetor

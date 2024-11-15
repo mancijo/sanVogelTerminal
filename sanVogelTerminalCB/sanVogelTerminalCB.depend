@@ -166,7 +166,7 @@
 	"administrativo.h"
 	"ti.h"
 
-1731533495 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\managstrg.h
+1731689350 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\managstrg.h
 	"commonLibs.h"
 
 1731513609 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\interfaces.h
@@ -199,6 +199,6 @@
 1731533495 c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\tools.h
 	"commonLibs.h"
 
-1731515664 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\tools.c
+1731533495 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\tools.c
 	"tools.h"
 
