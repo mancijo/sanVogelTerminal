@@ -38,7 +38,9 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 system("cls");
                 break;
                 } else if (choiceTi == 's') { // Continua para nova venda
+                printf("\033[1;37;44m");
                 printf("Iniciando nova venda...\n");
+                printf("\033[0m");
                 venderProduto(); // Chama a função de venda
                 system("pause");
                 } else {
@@ -84,7 +86,9 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 system("cls");
                 break;
                 } else if (choiceTi == 's') { // Continua para nova venda
+                printf("\033[1;37;44m");
                 printf("Iniciando nova venda...\n");
+                printf("\033[0m");
                 venderProduto(); // Chama a função de venda
                 system("pause");
                 } else {
@@ -124,23 +128,25 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
            case 3: {
                 char choiceTi;
                 do {
-                system("cls"); // Limpa a tela
+                system("cls");
                 printf("Deseja fazer uma nova venda? [S/N]: ");
 
-                scanf(" %c", &choiceTi); // Nota: o espaço antes de %c ignora espaços em branco ou '\n'
-                choiceTi = tolower(choiceTi); // Converte para minúscula
+                scanf(" %c", &choiceTi);
+                choiceTi = tolower(choiceTi);
 
-                if (choiceTi == 'n') { // Sai do loop se for 'n'
+                if (choiceTi == 'n') {
                 system("cls");
                 break;
-                } else if (choiceTi == 's') { // Continua para nova venda
+                } else if (choiceTi == 's') {
+                printf("\033[1;37;44m");
                 printf("Iniciando nova venda...\n");
-                venderProduto(); // Chama a função de venda
+                printf("\033[0m");
+                venderProduto();
                 system("pause");
                 } else {
                 printf("Opcao invalida. Digite 'S' para sim ou 'N' para nao.\n");
                 }
-            } while (1); // Continua até que o usuário escolha sair
+            } while (1);
             break;
 }
             case 0:
