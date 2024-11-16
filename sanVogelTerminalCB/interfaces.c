@@ -25,11 +25,28 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 storageAdmPanel();
                 break;
             case 2:
-                system("cls");
-                venderProduto();
-                system("pause");
+                {
+                char choiceTi;
+                do {
+                system("cls"); // Limpa a tela
+                printf("Deseja fazer uma nova venda? [S/N]: ");
+
+                scanf(" %c", &choiceTi); // Nota: o espaço antes de %c ignora espaços em branco ou '\n'
+                choiceTi = tolower(choiceTi); // Converte para minúscula
+
+                if (choiceTi == 'n') { // Sai do loop se for 'n'
                 system("cls");
                 break;
+                } else if (choiceTi == 's') { // Continua para nova venda
+                printf("Iniciando nova venda...\n");
+                venderProduto(); // Chama a função de venda
+                system("pause");
+                } else {
+                printf("Opcao invalida. Digite 'S' para sim ou 'N' para nao.\n");
+                }
+            } while (1); // Continua até que o usuário escolha sair
+            break;
+}
             case 0:
                 printf("Saindo...\n");
                 system("pause");
@@ -54,11 +71,28 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 system("cls");
                 break;
             case 2:
-                system("cls");
-                venderProduto();
-                system("pause");
+                {
+                char choiceTi;
+                do {
+                system("cls"); // Limpa a tela
+                printf("Deseja fazer uma nova venda? [S/N]: ");
+
+                scanf(" %c", &choiceTi); // Nota: o espaço antes de %c ignora espaços em branco ou '\n'
+                choiceTi = tolower(choiceTi); // Converte para minúscula
+
+                if (choiceTi == 'n') { // Sai do loop se for 'n'
                 system("cls");
                 break;
+                } else if (choiceTi == 's') { // Continua para nova venda
+                printf("Iniciando nova venda...\n");
+                venderProduto(); // Chama a função de venda
+                system("pause");
+                } else {
+                printf("Opcao invalida. Digite 'S' para sim ou 'N' para nao.\n");
+                }
+            } while (1); // Continua até que o usuário escolha sair
+            break;
+}
             case 0:
                 printf("Saindo...\n");
                 system("pause");
@@ -87,12 +121,28 @@ if (strcasecmp(roleArquivo, "Admin") == 0) {
                 system("pause");
                 system("cls");
             break;
-            case 3:
-                system("cls");
-                venderProduto();
-                system("pause");
+           case 3: {
+                char choiceTi;
+                do {
+                system("cls"); // Limpa a tela
+                printf("Deseja fazer uma nova venda? [S/N]: ");
+
+                scanf(" %c", &choiceTi); // Nota: o espaço antes de %c ignora espaços em branco ou '\n'
+                choiceTi = tolower(choiceTi); // Converte para minúscula
+
+                if (choiceTi == 'n') { // Sai do loop se for 'n'
                 system("cls");
                 break;
+                } else if (choiceTi == 's') { // Continua para nova venda
+                printf("Iniciando nova venda...\n");
+                venderProduto(); // Chama a função de venda
+                system("pause");
+                } else {
+                printf("Opcao invalida. Digite 'S' para sim ou 'N' para nao.\n");
+                }
+            } while (1); // Continua até que o usuário escolha sair
+            break;
+}
             case 0:
                 printf("Saindo...\n");
                 system("pause");

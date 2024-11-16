@@ -35,12 +35,12 @@ void venderProduto() {
     produtoSelecionado = searchItem(1, idStr);
 
     if (produtoSelecionado == NULL) {
-        printf("Produto n�o encontrado.\n");
+        printf("Produto nao encontrado.\n");
         return;
     }
 
     if (!produtoSelecionado->active) {
-        printf("O produto est� inativo e n�o pode ser vendido.\n");
+        printf("O produto esta inativo e nao pode ser vendido.\n");
         return;
     }
 
@@ -53,7 +53,7 @@ void venderProduto() {
     readInt(&quantidadeDesejada);
 
     if (quantidadeDesejada > produtoSelecionado->units) {
-        printf("Quantidade indispon�vel em estoque.\n");
+        printf("Quantidade indisponivel em estoque.\n");
         return;
     }
 
@@ -64,12 +64,6 @@ void venderProduto() {
 
     // Atualizar o arquivo de estoque
     saveFile();
-
-
-
-
-
-
     // Registrar o log de venda
     LogVenda(produtoSelecionado->name, quantidadeDesejada, produtoSelecionado->price);
 }

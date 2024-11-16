@@ -101,10 +101,10 @@
 1730755982 source:c:\users\mario\sanvogelterminal\sanvogelterminalcb\ti.c
 	"ti.h"
 
-1731411539 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\administrativo.c
+1731689603 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\administrativo.c
 	"commonLibs.h"
 
-1731411539 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\commonlibs.h
+1731689603 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\commonlibs.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -112,16 +112,17 @@
 	<locale.h>
 	<stdbool.h>
 	<time.h>
+	"tools.h"
 	"managStrg.h"
 	"interfaces.h"
 	"operador.h"
 	"administrativo.h"
 	"ti.h"
 
-1731411539 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\managstrg.h
+1731690809 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\managstrg.h
 	"commonLibs.h"
 
-1731411539 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\interfaces.h
+1731689603 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\interfaces.h
 	"commonLibs.h"
 
 1731411539 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\operador.h
@@ -130,22 +131,22 @@
 1731411539 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\administrativo.h
 	"commonLibs.h"
 
-1731411539 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\ti.h
+1731798813 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\ti.h
 	"commonLibs.h"
 
-1731411718 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\interfaces.c
+1731799709 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\interfaces.c
 	"interfaces.h"
 
-1731411539 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\main.c
+1731690809 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\main.c
 	"commonLibs.h"
 
-1731412917 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\managstrg.c
+1731690809 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\managstrg.c
 	"managStrg.h"
 
-1731413154 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\operador.c
+1731798813 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\operador.c
 	"operador.h"
 
-1731412990 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\ti.c
+1731798965 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\ti.c
 	"ti.h"
 
 1731516387 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\administrativo.c
@@ -200,5 +201,11 @@
 	"commonLibs.h"
 
 1731533495 source:c:\users\meu pc\documents\estudos\sanvogelterminal\sanvogelterminalcb\tools.c
+	"tools.h"
+
+1731689603 c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\tools.h
+	"commonLibs.h"
+
+1731689603 source:c:\users\mateus teodoro\sanvogelterminal\sanvogelterminalcb\tools.c
 	"tools.h"
 
