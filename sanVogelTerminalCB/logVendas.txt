@@ -1,3 +1,4 @@
 08/11/2024 23:33 | Produto: Carambola | Quantidade: 1 | Preco Unitario: 19.00 | Total: 19.00
 08/11/2024 23:35 | Produto: coco | Quantidade: 2 | Preco Unitario: 12.00 | Total: 24.00
 15/11/2024 15:07 | Produto: Kiwi | Quantidade: 3 | Preco Unitario: 10.89 | Total: 32.67
+18/11/2024 17:52 | Produto: kaicao | Quantidade: 134 | Preco Unitario: 2.00 | Total: 268.00

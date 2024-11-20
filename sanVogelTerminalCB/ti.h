@@ -18,5 +18,6 @@ void alterarUsr();
 int gerUser();
 int storageTiPanel();
 void inativarUsuario();
+void venderProduto();
 
 #endif // TI_H_INCLUDED

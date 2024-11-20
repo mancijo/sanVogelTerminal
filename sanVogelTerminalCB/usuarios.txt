@@ -5,3 +5,6 @@ mario 123 operador Ativo
 andrei 123 master inativo
 operador 123 operador Ativo
 admin 123 admin Ativo
+testmaster 123 master Ativo
+testadmin 123 admin Ativo
+testoperad 123 operado Ativo

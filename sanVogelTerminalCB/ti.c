@@ -16,6 +16,8 @@ void opcoesMa() {
     printf("==============================\n");
 }
 
+
+
 void cadUsr() {
     FILE *usuarios;
     char lUsr[30];
@@ -232,7 +234,7 @@ int gerUser() {
 int editProductPanelTi() {
     // Declaração das variáveis
     int type;
-    char search[30], searchNI[30];
+    char search[30];
     Product* produtoAlvo;
 
     puts("Insira 1 para selecionar o produto usando ID. \nInsira 2 para selecionar o produto usando o nome. \n");
