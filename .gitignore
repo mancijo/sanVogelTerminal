@@ -1,5 +1,4 @@
 # Ignorar arquivos binários 
-*.exe 
 *.dll 
 *.o 
 *.bin 
