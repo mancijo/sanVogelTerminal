@@ -20,7 +20,7 @@
     <a href="https://github.com/mancijo/">Andrei Henrique Mancijo</a></br>
     <a href="https://github.com/MateusTeod">Mateus Teodoro da Silva</a></br>
     <a href="https://github.com/JonatasSantos42">Jhonatas Santos</a></br>
-    <a href="">Kaique</a></br>
+    <a href="https://github.com/Kaiq-commits">Kaique Batista da Silva</a></br>
     <a href="https://github.com/MariozanJr">Mariozan</a></br>
   </ul>
 </nav>
